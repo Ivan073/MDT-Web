@@ -5,6 +5,13 @@
     <title>Login</title>
 </head>
 <body>
-  Login Page
+  <form method="post" action="login">
+      {% csrf_token %}
+      <label for="username">Имя пользователя:</label>
+      <input type="text" id="username" name="username"><br>
+      <label for="password">Пароль:</label>
+      <input type="password" id="password" name="password"><br>
+  <button type="submit">Войти</button>
+</form>
 </body>
 </html>
