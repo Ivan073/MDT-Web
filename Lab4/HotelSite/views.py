@@ -11,6 +11,15 @@ def login_view(request):
             #return redirect(views.home)
     else:
         form = AuthenticationForm()
-    return render(request, "login.html", {"form": form})
+    return render(request, "login.html")
 
-# Create your views here.
+def signup_view(request):
+    if request.method == "POST":
+        form = AuthenticationForm(request, request.POST)
+        if form.is_valid():
+            user = form.get_user()
+            login(request, user)
+            #return redirect(views.home)
+    else:
+        form = AuthenticationForm()
+    return render(request, "signup.html")
