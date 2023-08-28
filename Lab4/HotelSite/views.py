@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth.forms import AuthenticationForm
 
+
 def login_view(request):
     if request.method == "POST":
         form = AuthenticationForm(request, request.POST)
