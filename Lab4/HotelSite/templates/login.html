@@ -18,7 +18,10 @@
           <input type="text" id="username" name="username" class="form-control me-sm-2" placeholder="Логин"><br>
           <label>Пароль:</label>
           <input type="password" id="password" name="password" class="form-control me-sm-2" placeholder="Пароль"><br>
-      <button type="submit" class="btn btn-dark">Войти</button>
+          <button type="submit" class="btn btn-dark">Войти</button>
+          {%if error%}
+          <span style="color:red;">Неверный логин или пароль</span>
+            {% endif%}
       </form>
         <a href="signup" class="text-white">Зарегистрироваться</a>
     </div>
