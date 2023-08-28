@@ -12,13 +12,21 @@
 <div class="card bg-secondary mb-3 middle-of-screen" style="width: 30rem;">
     <div class="card-header display-6">Регистрация</div>
     <div class="card-body">
-        <form method="post" action="login">
+        <form method="post" action="signup">
           {% csrf_token %}
+          <label>email:</label>
+          <input type="email" id="email" name="email" class="form-control me-sm-2" placeholder="email"><br>
           <label>Имя пользователя:</label>
           <input type="text" id="username" name="username" class="form-control me-sm-2" placeholder="Логин"><br>
           <label>Пароль:</label>
-          <input type="password" id="password" name="password" class="form-control me-sm-2" placeholder="Пароль"><br>
+          <input type="password" id="password1" name="password1" class="form-control me-sm-2" placeholder="Пароль"><br>
+          <label>Повторите пароль:</label>
+          <input type="password" id="password2" name="password2" class="form-control me-sm-2" placeholder="Пароль"><br>
         <button type="submit" class="btn btn-dark">Зарегистрироваться</button>
+            {%if error%}
+          <span style="color:red;">Ошибка</span>
+            {{errors}}
+          {% endif%}
   </form>
     <a href="login" class="text-white">Уже зарегистрированы?</a></div>
 </div>
