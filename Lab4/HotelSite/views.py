@@ -3,7 +3,7 @@ import logging
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
-from django.contrib.auth import login
+from django.contrib.auth import login,logout
 from django import forms
 from django.contrib.auth.models import User
 from django.shortcuts import redirect
@@ -44,3 +44,7 @@ def home_view(request):
         "user":request.user
     }
     return render(request, "home.html",context=context)
+
+def logout_view(request):
+    logout(request)
+    return redirect(request.META.get('HTTP_REFERER'))
