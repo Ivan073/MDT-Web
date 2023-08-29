@@ -7,6 +7,8 @@ from django.contrib.auth import login,logout
 from django import forms
 from django.contrib.auth.models import User
 from django.shortcuts import redirect
+from django.contrib.auth.decorators import user_passes_test
+from django.contrib import admin
 
 logger = logging.getLogger(__name__)
 def login_view(request):
@@ -14,7 +16,6 @@ def login_view(request):
     if request.method == "POST":
         form = AuthenticationForm(request, request.POST)
         logger.warning("test")
-        logger.warning(request)
         if form.is_valid():
             user = form.get_user()
             login(request, user)
