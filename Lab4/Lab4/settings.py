@@ -142,3 +142,5 @@ LOGGING = {
         },
     },
 }
+
+AUTH_USER_MODEL = 'HotelSite.Client'

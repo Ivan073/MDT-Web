@@ -15,13 +15,14 @@
     <div class="card-body">
       <form method="post" action="login">
           {% csrf_token %}
-          <label>Имя пользователя:</label>
-          <input type="text" id="username" name="username" class="form-control me-sm-2" placeholder="Логин"><br>
+          <label>email:</label>
+          <input type="email" id="email" name="email" class="form-control me-sm-2" placeholder="email">
           <label>Пароль:</label>
           <input type="password" id="password" name="password" class="form-control me-sm-2" placeholder="Пароль"><br>
           <button type="submit" class="btn btn-dark">Войти</button>
           {%if error%}
           <span style="color:red;">Неверный логин или пароль</span>
+          {{errors}}
           {% endif%}
       </form>
         <a href="signup" class="text-white">Зарегистрироваться</a>
