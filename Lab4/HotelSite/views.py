@@ -8,6 +8,7 @@ from django.shortcuts import redirect
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib import admin
 from .forms import ClientAuthenticationForm, ClientCreationForm
+import requests
 
 logger = logging.getLogger(__name__)
 
@@ -76,3 +77,15 @@ def home_view(request):
 def logout_view(request):
     logout(request)
     return redirect(request.META.get('HTTP_REFERER'))
+
+def geo_view(request):
+    ip_response = requests.get('https://api.ipify.org/?format=json')
+    ip = ip_response.json()['ip']
+    logger.info('IP:'+ip)
+    place_responce = requests.get('https://ipinfo.io/'+ip+'/geo')
+    place = place_responce.json()
+    context = {'ip':ip,
+               'postal':place['postal'],
+               'city':place['city']}
+    logger.info(context)
+    return render(request, "place.html",context=context)

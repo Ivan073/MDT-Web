@@ -8,4 +8,5 @@ urlpatterns = [
     path('logout', views.logout_view),
     path('signup', views.signup_view),
     path('admin', admin.site.urls),
+    path('place', views.geo_view),
 ]
