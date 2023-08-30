@@ -19,11 +19,11 @@ def login_view(request):
         if form.is_valid():
             user = form.get_user()
             if user is None:
-                context = {"error": True}
+                context = {"error": True, "email": request.POST["email"]}
                 return render(request, "login.html", context)
             login(request, user)
             return redirect(home_view)
-        context={"error": True, "errors":form.errors}
+        context={"error": True}
     return render(request, "login.html", context)
 
 def signup_view(request):
