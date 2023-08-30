@@ -19,8 +19,8 @@ class ClientAuthenticationForm(AuthenticationForm):
 
 class ClientCreationForm(UserCreationForm):
     email = forms.EmailField(required=True)
-    has_child = forms.CharField(required=True, max_length=10)
-    info = forms.CharField(required=True, max_length=400)
+    has_child = forms.CharField(required=False, max_length=10)
+    info = forms.CharField(required=False, max_length=400)
     class Meta:
         model = Client
         fields = ['email', 'password1', 'password2', 'first_name', 'last_name', 'patronymic', 'has_child', 'info']

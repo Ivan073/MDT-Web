@@ -16,31 +16,34 @@
         <form method="post" action="signup">
           {% csrf_token %}
           <label>email:</label>
-          <input type="email" id="email" name="email" class="form-control me-sm-2" placeholder="email">
+          <input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" id="email" name="email" class="form-control me-sm-2" placeholder="email" required value="{{email}}">
             <label>ФИО:</label>
             <div class="input-group">
-                <input type="text" id="last_name" name="last_name" class="form-control me-sm-2" placeholder="Фамилия">
-                <input type="text" id="first_name" name="first_name" class="form-control me-sm-2" placeholder="Имя">
-                <input type="text" id="patronymic" name="patronymic" class="form-control me-sm-2" placeholder="Отчество">
+                <input type="text" id="last_name" name="last_name" class="form-control me-sm-2" placeholder="Фамилия" required value="{{last_name}}">
+                <input type="text" id="first_name" name="first_name" class="form-control me-sm-2" placeholder="Имя" required value="{{first_name}}">
+                <input type="text" id="patronymic" name="patronymic" class="form-control me-sm-2" placeholder="Отчество" required value="{{patronymic}}">
             </div>
             <div>
-              <input class="form-check-input" type="checkbox" id="has_child" name="has_child">
+              <input class="form-check-input" type="checkbox" id="has_child" name="has_child" {% if has_child %}checked{% endif %}>
               <label class="form-check-label">
                 Есть ребенок
               </label>
             </div>
             <label class="form-label mt-4">Дополнительная информация</label>
-            <textarea class="form-control" id="info" name="info" rows="3"></textarea>
+            <textarea class="form-control" id="info" name="info" rows="3">{{info}}</textarea>
             <br>
           <label>Пароль:</label>
-          <input type="password" id="password1" name="password1" class="form-control me-sm-2" placeholder="Пароль">
+          <input type="password" id="password1" name="password1" class="form-control me-sm-2" placeholder="Пароль" required>
           <label>Повторите пароль:</label>
-          <input type="password" id="password2" name="password2" class="form-control me-sm-2" placeholder="Пароль"><br>
+          <input type="password" id="password2" name="password2" class="form-control me-sm-2" placeholder="Пароль" required><br>
         <button type="submit" class="btn btn-dark">Зарегистрироваться</button>
+            <div style="color:red;">
             {%if error%}
-          <span style="color:red;">Ошибка</span>
-            {{errors}}
-          {% endif%}
+                {% for err in errors%}
+                  {{err}}
+                {% endfor%}
+            {% endif%}
+            </div>
   </form>
     <a href="login" class="text-white">Уже зарегистрированы?</a></div>
 </div>
