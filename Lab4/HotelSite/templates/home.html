@@ -8,31 +8,20 @@
 </head>
 <body>
 {% include "header.html" %}
-<h1>Доступные комнаты:</h1>
-
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th scope="col"></th>
-      <th scope="col">Цена</th>
-      <th scope="col">Вместимость</th>
-      <th scope="col">Тип</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for room in rooms%}
-    <tr class="table-active">
-      <th scope="row"><img src = "{{room.photo.url}}" alt = "Изображение не загружено"></img></th>
-      <td>{{room.price}}BYN</td>
-      <td>{{room.capacity}} чел.</td>
-      <td>{% if room.room_type.name == 'Luxury' %}Люкс
+<h1 style="margin: 20px">Доступные комнаты:</h1>
+  <div class="d-flex" style="gap: 20px;margin: 20px">
+      {% for room in rooms%}
+      <div class="card">
+        <img src = "{{room.photo.url}}" alt = "Изображение не загружено"></img>
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">{{room.price}}BYN</li>
+            <li class="breadcrumb-item">{{room.capacity}} чел.</li>
+            <li class="breadcrumb-item"> {% if room.room_type.name == 'Luxury' %}Люкс
           {% elif room.room_type.name == 'Half-luxury' %}Полулюкс
           {% elif room.room_type.name == 'Regular' %}Обычная
-          {%endif%}
-      </td>
-    </tr>
-  {% endfor %}
-  </tbody>
-</table>
-
+          {%endif%}</li>
+          </ol>
+      </div>
+       {% endfor %}
+    </div>
 </body>
