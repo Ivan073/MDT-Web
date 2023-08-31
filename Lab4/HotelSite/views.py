@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login,logout
-from .models import Client, ClientData
+from .models import Client, ClientData, Room
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib import admin
@@ -69,9 +69,16 @@ def signup_view(request):
     return render(request, "signup.html",context)
 
 def home_view(request):
+    rooms = Room.objects.all()
+    logger.warning(rooms)
     context={
-        "user":request.user
+        "user":request.user,
+        "rooms":rooms,
     }
+
+
+
+
     return render(request, "home.html",context=context)
 
 def logout_view(request):

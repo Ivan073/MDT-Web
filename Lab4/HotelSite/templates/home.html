@@ -9,4 +9,30 @@
 <body>
 {% include "header.html" %}
 <h1>Доступные комнаты:</h1>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">Цена</th>
+      <th scope="col">Вместимость</th>
+      <th scope="col">Тип</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for room in rooms%}
+    <tr class="table-active">
+      <th scope="row"><img src = "{{room.photo.url}}" alt = "Изображение не загружено"></img></th>
+      <td>{{room.price}}BYN</td>
+      <td>{{room.capacity}} чел.</td>
+      <td>{% if room.room_type.name == 'Luxury' %}Люкс
+          {% elif room.room_type.name == 'Half-luxury' %}Полулюкс
+          {% elif room.room_type.name == 'Regular' %}Обычная
+          {%endif%}
+      </td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
 </body>
