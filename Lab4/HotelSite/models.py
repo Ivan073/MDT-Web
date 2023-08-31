@@ -17,9 +17,14 @@ class Client(AbstractUser):
 
     objects = ClientManager()
 
+    def __str__(self):
+        return self.last_name + " " + self.first_name + " " + self.patronymic
+
 
 class RoomType(models.Model):
     name = models.CharField(max_length=50, blank=True)
+    def __str__(self):
+        return self.name
 
 class Room(models.Model):
     description = models.CharField(max_length=400, blank=True)
