@@ -11,6 +11,7 @@
 <h1 style="margin: 20px">Доступные комнаты:</h1>
   <div class="d-flex" style="gap: 20px;margin: 20px">
       {% for room in rooms%}
+      <a href = "rooms/{{room.id}}" style="text-decoration:none;color:black;">
       <div class="card">
         <img src = "{{room.photo.url}}" alt = "Изображение не загружено"></img>
           <ol class="breadcrumb">
@@ -23,5 +24,6 @@
           </ol>
       </div>
        {% endfor %}
+      </a>
     </div>
 </body>
