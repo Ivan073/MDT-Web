@@ -1,5 +1,5 @@
 from . import views
-from django.urls import path
+from django.urls import path, re_path
 from django.contrib import admin
 
 urlpatterns = [
@@ -9,4 +9,5 @@ urlpatterns = [
     path('signup', views.signup_view),
     path('admin', admin.site.urls),
     path('place', views.geo_view),
+    path('rooms/<int:id>/', views.room_view),
 ]

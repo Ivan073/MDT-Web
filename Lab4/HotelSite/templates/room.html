@@ -1,0 +1,59 @@
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+
+    <title>"Отель сайт"</title>
+
+</head>
+<body>
+{% include "header.html" %}
+    <div style="margin:40px;">
+      <div class="d-flex " style="gap: 10rem;margin-bottom:20px;">
+          <div>
+                <img src = "{{room.photo.url}}" alt = "Изображение не загружено" class="img-thumbnail" style="width:25rem"></img>
+          </div>
+          <div>
+              <ul class="list-group" style="font-size:1.5rem">
+                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Стоимость за день: {{room.price}}BYN
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                    Вместимость: {{room.capacity}} чел.
+                  </li>
+                  <li class="list-group-item d-flex justify-content-between align-items-center">
+                    {% if room.room_type.name == 'Luxury' %}Люкс
+                      {% elif room.room_type.name == 'Half-luxury' %}Полулюкс
+                      {% elif room.room_type.name == 'Regular' %}Обычная
+                      {%endif%}
+                      <div class="btn-group  dropstart" role="group">
+                        <button id="btnGroupDrop1" type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="bi bi-info-circle"></i></button>
+                        <div class="dropdown-menu" aria-labelledby="btnGroupDrop1" style="width:20rem">
+                          <ul class="list-group" style="font-size:14px">
+                              <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Люкс:<br> очень хороший номер, очень хорошо, отлично, классно
+                              </li>
+                              <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Полулюкс:<br> нормальный, пойдет, сойдет, нормально, ок ок, хорошо (ок)
+                              </li>
+                              <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Обычный:<br> плохой, обычный, не хороший, не идеальный(ок)
+                              </li>
+                          </ul>
+                        </div>
+                      </div>
+                  </li>
+              </ul>
+          </div>
+      </div>
+    <h3>Описание:</h3>
+       <div style="width:60rem;margin:10px">{{room.description}}</div>
+    </div>
+</body>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+

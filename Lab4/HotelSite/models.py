@@ -29,11 +29,11 @@ class RoomType(models.Model):
         return self.name
 
 class Room(models.Model):
-    description = models.CharField(max_length=400, blank=True)
+    description = models.CharField(max_length=2000, blank=True)
     photo = models.ImageField(blank=True, upload_to='images/')
     price = models.DecimalField(blank=True, decimal_places=2, max_digits=12)
     capacity = models.IntegerField(blank=True)
-    room_type = models.OneToOneField(RoomType, on_delete=models.CASCADE, blank=True)
+    room_type = models.ForeignKey(RoomType, on_delete=models.CASCADE, blank=True)
     def __str__(self):
         return "Room"+str(self.id)
 

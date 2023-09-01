@@ -96,3 +96,7 @@ def geo_view(request):
                'city':place['city']}
     logger.info(context)
     return render(request, "place.html",context=context)
+
+def room_view(request, id):
+    room = Room.objects.get(id=id)
+    return render(request, 'room.html', {'room': room})
