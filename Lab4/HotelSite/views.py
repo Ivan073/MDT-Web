@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login,logout
-from .models import Client, ClientData, Room
+from .models import Client, ClientData, Room, RoomType
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib import admin
@@ -70,15 +70,40 @@ def signup_view(request):
 
 def home_view(request):
     rooms = Room.objects.all()
+    if request.method == "POST":
+        logger.warning(request.POST)
+        type_name = request.POST.get("type")
+        if type_name is not None and type_name != '':
+            type_obj = RoomType.objects.get(name=type_name)
+            rooms = rooms.filter(room_type = type_obj)
+
+        price_filter = request.POST.get("price_filter")
+        price_radio = request.POST.get("price_radio")
+        if price_filter is not None and price_filter != '':
+            if price_radio == 'up':
+                rooms = rooms.filter(price__gt=float(price_filter))
+                rooms = rooms.order_by('price')
+            elif price_radio == 'down':
+                rooms = rooms.filter(price__lt=float(price_filter))
+                rooms = rooms.order_by('-price')
+            elif price_radio is None:
+                rooms = rooms.filter(price=float(price_filter))
+
+        capacity_filter = request.POST.get("capacity_filter")
+        capacity_radio = request.POST.get("capacity_radio")
+        if capacity_filter is not None and capacity_filter != '':
+            if capacity_radio == 'up':
+                rooms = rooms.filter(capacity__gt=float(capacity_filter))
+            elif capacity_radio == 'down':
+                rooms = rooms.filter(capacity__lt=float(capacity_filter))
+            elif capacity_radio is None:
+                rooms = rooms.filter(capacity=float(capacity_filter))
     logger.warning(rooms)
     context={
         "user":request.user,
         "rooms":rooms,
+        "amount":len(rooms),
     }
-
-
-
-
     return render(request, "home.html",context=context)
 
 def logout_view(request):
