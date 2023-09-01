@@ -29,7 +29,7 @@ class RoomType(models.Model):
         return self.name
 
 class Room(models.Model):
-    description = models.CharField(max_length=2000, blank=True)
+    description = models.TextField(max_length=5000, blank=True)
     photo = models.ImageField(blank=True, upload_to='images/')
     price = models.DecimalField(blank=True, decimal_places=2, max_digits=12)
     capacity = models.IntegerField(blank=True)
