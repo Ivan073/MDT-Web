@@ -124,4 +124,5 @@ def geo_view(request):
 
 def room_view(request, id):
     room = Room.objects.get(id=id)
-    return render(request, 'room.html', {'room': room})
+    logger.warning(request.user)
+    return render(request, 'room.html', {'room': room, "user":request.user})
