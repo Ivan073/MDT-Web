@@ -38,9 +38,9 @@ class Room(models.Model):
         return "Room"+str(self.id)
 
 class Booking(models.Model):
-    client = models.OneToOneField(Client, on_delete=models.CASCADE, blank=True, related_name='booking')
-    room = models.OneToOneField(Room, on_delete=models.CASCADE, blank=True, related_name='booking')
-    entry_date = models.DateTimeField(blank=True)
-    departure_date = models.DateTimeField(null=True,blank=True)
+    client = models.ForeignKey(Client, on_delete=models.CASCADE, blank=True, related_name='booking')
+    room = models.ForeignKey(Room, on_delete=models.CASCADE, blank=True, related_name='booking')
+    entry_date = models.DateField(blank=True)
+    departure_date = models.DateField(null=True,blank=True)
     def __str__(self):
         return "Booking"+str(self.id)
