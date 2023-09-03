@@ -1,8 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from .managers import ClientManager
+from datetime import datetime
+import logging
 
-# Create your models here.
+logger = logging.getLogger(__name__)
 
 class ClientData(models.Model):
     info = models.CharField(max_length=400, blank=True)
@@ -34,6 +36,9 @@ class Room(models.Model):
     price = models.DecimalField(blank=True, decimal_places=2, max_digits=12)
     capacity = models.IntegerField(blank=True)
     room_type = models.ForeignKey(RoomType, on_delete=models.CASCADE, blank=True)
+    free_date = models.DateField(blank=True, null=True)
+
+
     def __str__(self):
         return "Room"+str(self.id)
 
@@ -44,3 +49,16 @@ class Booking(models.Model):
     departure_date = models.DateField(null=True,blank=True)
     def __str__(self):
         return "Booking"+str(self.id)
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        logger.warning(self.room.free_date)
+        logger.warning("0")
+        if self.departure_date is not None:
+            logger.warning("1")
+            if self.departure_date > self.room.free_date:
+                logger.warning("2")
+                self.room.free_date = self.departure_date
+        logger.warning(self.room.free_date)
+        self.room.save(*args, **kwargs)
+        super().save(*args, **kwargs)
