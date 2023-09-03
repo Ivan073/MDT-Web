@@ -9,6 +9,7 @@ from django.contrib.auth.decorators import user_passes_test
 from django.contrib import admin
 from .forms import ClientAuthenticationForm, ClientCreationForm
 import requests
+from datetime import datetime
 
 logger = logging.getLogger(__name__)
 
@@ -98,6 +99,13 @@ def home_view(request):
                 rooms = rooms.filter(capacity__lt=float(capacity_filter))
             elif capacity_radio is None:
                 rooms = rooms.filter(capacity=float(capacity_filter))
+
+        date = request.POST.get("date")
+
+        if date is not None and date != '':
+            date = datetime.strptime(date, '%Y-%m-%d')
+            logger.warning(date)
+            rooms = rooms.filter(lambda r: Booking.objects)
     logger.warning(rooms)
     context={
         "user":request.user,
@@ -126,3 +134,6 @@ def room_view(request, id):
     room = Room.objects.get(id=id)
     logger.warning(request.user)
     return render(request, 'room.html', {'room': room, "user":request.user})
+
+def booking_view(request, id):
+    pass
