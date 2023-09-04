@@ -105,7 +105,9 @@ def home_view(request):
         if date is not None and date != '':
             date = datetime.strptime(date, '%Y-%m-%d')
             logger.warning(date)
-            rooms = rooms.filter(lambda r: Booking.objects)
+            rooms = rooms.filter(free_date__lte=date)
+
+
     logger.warning(rooms)
     context={
         "user":request.user,
