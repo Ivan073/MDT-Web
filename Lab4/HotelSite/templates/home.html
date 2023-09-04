@@ -50,7 +50,7 @@
         </div>
         <div class="d-flex" style="gap:10px">
             <label class="text-secondary">Дата заезда:</label>
-            <input class="form-select-sm text-secondary" type="date" name="date">
+            <input class="form-select-sm text-secondary" type="date" name="date" min="{{tomorrow|date:'Y-m-d' }}" max="{{max|date:'Y-m-d' }}">
         </div>
 
         <button type="submit" class="btn btn-secondary" style="padding-top:2px">Применить</button>

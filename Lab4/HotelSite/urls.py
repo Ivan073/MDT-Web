@@ -10,4 +10,5 @@ urlpatterns = [
     path('admin', admin.site.urls),
     path('place', views.geo_view),
     path('rooms/<int:id>/', views.room_view),
+    path('booking/<int:id>/', views.booking_view),
 ]

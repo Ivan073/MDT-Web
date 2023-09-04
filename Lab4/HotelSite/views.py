@@ -9,7 +9,8 @@ from django.contrib.auth.decorators import user_passes_test
 from django.contrib import admin
 from .forms import ClientAuthenticationForm, ClientCreationForm
 import requests
-from datetime import datetime
+from datetime import datetime, timedelta
+from django.contrib.auth.decorators import login_required
 
 logger = logging.getLogger(__name__)
 
@@ -113,6 +114,8 @@ def home_view(request):
         "user":request.user,
         "rooms":rooms,
         "amount":len(rooms),
+        "tomorrow":datetime.today()+timedelta(days=1),
+        "max": datetime.today() + timedelta(days=31)
     }
     return render(request, "home.html",context=context)
 
@@ -137,5 +140,25 @@ def room_view(request, id):
     logger.warning(request.user)
     return render(request, 'room.html', {'room': room, "user":request.user})
 
+@login_required
 def booking_view(request, id):
-    pass
+    room = Room.objects.get(id=id)
+    min_date = max(room.free_date,datetime.date(datetime.today()+timedelta(days=1)))
+    max_date = min_date + timedelta(days=30)
+    logger.warning(request.POST)
+    context = {'room': room,
+               "user":request.user,
+               "min_date":min_date,
+               "max_date":max_date}
+    if request.method == "POST":
+        start_date = request.POST.get("start_date")
+        end_date = request.POST.get("end_date")
+        if start_date is not None and end_date is not None:
+            start_date = datetime.strptime(start_date,'%Y-%m-%d')
+            end_date = datetime.strptime(end_date,'%Y-%m-%d')
+            if start_date <=  end_date:
+                pass
+            else:
+                context["error"] = True
+    logger.warning(context)
+    return render(request, "booking.html",context)
