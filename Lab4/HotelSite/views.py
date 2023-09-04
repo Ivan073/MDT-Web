@@ -157,7 +157,10 @@ def booking_view(request, id):
             start_date = datetime.strptime(start_date,'%Y-%m-%d')
             end_date = datetime.strptime(end_date,'%Y-%m-%d')
             if start_date <=  end_date:
-                pass
+                duration = (end_date-start_date).days+1
+                context={"price":room.price*duration, "user":request.user,"id":id, "start_date":start_date,"end_date":end_date}
+                logger.warning(context)
+                return render(request, 'order.html', context)
             else:
                 context["error"] = True
     logger.warning(context)
