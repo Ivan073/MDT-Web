@@ -11,4 +11,6 @@ urlpatterns = [
     path('place', views.geo_view),
     path('rooms/<int:id>/', views.room_view),
     path('booking/<int:id>/', views.booking_view),
+    path('payment', views.payment_view),
+    path('payment_finished', views.payment_finsihed_view),
 ]

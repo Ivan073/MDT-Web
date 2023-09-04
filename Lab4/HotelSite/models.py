@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from .managers import ClientManager
-from datetime import datetime
+from datetime import datetime, timedelta
 import logging
 
 logger = logging.getLogger(__name__)
@@ -56,9 +56,8 @@ class Booking(models.Model):
         logger.warning("0")
         if self.departure_date is not None:
             logger.warning("1")
-            if self.departure_date > self.room.free_date:
+            if self.departure_date >= self.room.free_date:
                 logger.warning("2")
-                self.room.free_date = self.departure_date
+                self.room.free_date = self.departure_date + timedelta(days=1)
         logger.warning(self.room.free_date)
-        self.room.save(*args, **kwargs)
-        super().save(*args, **kwargs)
+        self.room.save(update_fields=["free_date"])

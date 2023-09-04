@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login,logout
-from .models import Client, ClientData, Room, RoomType
+from .models import Client, ClientData, Room, RoomType, Booking
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib import admin
@@ -154,14 +154,30 @@ def booking_view(request, id):
         start_date = request.POST.get("start_date")
         end_date = request.POST.get("end_date")
         if start_date is not None and end_date is not None:
-            start_date = datetime.strptime(start_date,'%Y-%m-%d')
-            end_date = datetime.strptime(end_date,'%Y-%m-%d')
+            start_date = datetime.date(datetime.strptime(start_date,'%Y-%m-%d'))
+            end_date = datetime.date(datetime.strptime(end_date,'%Y-%m-%d'))
             if start_date <=  end_date:
                 duration = (end_date-start_date).days+1
-                context={"price":room.price*duration, "user":request.user,"id":id, "start_date":start_date,"end_date":end_date}
+                context={"price":room.price*duration, "user":request.user,"room_id":id, "start_date":start_date,"end_date":end_date}
+                request.session['price'] = float(room.price*duration)
+                request.session['room_id'] = id
+                request.session['start_date'] = str(start_date)
+                request.session['end_date'] = str(end_date)
                 logger.warning(context)
                 return render(request, 'order.html', context)
             else:
                 context["error"] = True
     logger.warning(context)
     return render(request, "booking.html",context)
+
+@login_required
+def payment_view(request):
+    return redirect("/payment_finished")
+
+@login_required
+def payment_finsihed_view(request):
+    Booking.objects.create(client=request.user,
+                           room=Room.objects.get(id=request.session['room_id']),
+                           entry_date=datetime.date(datetime.strptime(request.session['start_date'],'%Y-%m-%d')),
+                           departure_date=datetime.date(datetime.strptime(request.session['end_date'],'%Y-%m-%d')))
+    return render(request, "payment_successful.html")
