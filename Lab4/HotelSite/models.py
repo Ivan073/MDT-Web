@@ -51,7 +51,7 @@ class Room(models.Model):
         verbose_name_plural = 'Комнаты'
 
     def __str__(self):
-        return "Room"+str(self.id)
+        return "Комната "+str(self.id)
 
 class Booking(models.Model):
     client = models.ForeignKey(Client, on_delete=models.CASCADE, blank=True, related_name='booking', verbose_name="Клиент")
