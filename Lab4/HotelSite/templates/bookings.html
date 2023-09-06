@@ -18,6 +18,7 @@
       <th scope="col">Комната</th>
       <th scope="col">Дата въезда</th>
       <th scope="col">Дата выезда</th>
+      <th scope="col">Стоимость</th>
     </tr>
   </thead>
   <tbody>
@@ -26,6 +27,7 @@
       <td ><a href="/rooms/{{booking.room.id}}"><img src="{{booking.room.photo.url}}"></a></td>
       <td>{{booking.entry_date|date:"d.m.Y"}}</td>
       <td>{{booking.departure_date|date:"d.m.Y"}}</td>
+      <td>{{booking.price}}BYN</td>
     </tr>
   {% endfor %}
   </tbody>

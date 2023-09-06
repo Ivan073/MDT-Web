@@ -47,17 +47,15 @@ class Booking(models.Model):
     room = models.ForeignKey(Room, on_delete=models.CASCADE, blank=True, related_name='booking')
     entry_date = models.DateField(blank=True)
     departure_date = models.DateField(null=True,blank=True)
+    price = models.DecimalField(blank=True, decimal_places=2, max_digits=12, editable=False, default=0)
     def __str__(self):
         return "Booking"+str(self.id)
 
     def save(self, *args, **kwargs):
+        self.price = self.room.price * (self.departure_date-self.entry_date+timedelta(days=1)).days
         super().save(*args, **kwargs)
-        logger.warning(self.room.free_date)
-        logger.warning("0")
         if self.departure_date is not None:
-            logger.warning("1")
             if self.departure_date >= self.room.free_date:
-                logger.warning("2")
                 self.room.free_date = self.departure_date + timedelta(days=1)
         logger.warning(self.room.free_date)
         self.room.save(update_fields=["free_date"])
