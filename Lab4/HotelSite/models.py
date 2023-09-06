@@ -7,15 +7,15 @@ import logging
 logger = logging.getLogger(__name__)
 
 class ClientData(models.Model):
-    info = models.CharField(max_length=400, blank=True)
-    has_child = models.BooleanField(blank=True)
+    info = models.CharField(max_length=400, blank=True, verbose_name="Информация")
+    has_child = models.BooleanField(blank=True, verbose_name="Есть ребенок")
     def __str__(self):
         return "ClientData"+str(self.id)
 class Client(AbstractUser):
     username = None
     email = models.EmailField(unique=True, primary_key=True)
-    patronymic = models.CharField(max_length=100, blank=True)
-    client_data = models.OneToOneField(ClientData, on_delete=models.CASCADE, blank=True, related_name='client')
+    patronymic = models.CharField(max_length=100, blank=True, verbose_name="Отчество")
+    client_data = models.OneToOneField(ClientData, on_delete=models.CASCADE, blank=True, related_name='client', verbose_name="Данные клиента")
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
 
@@ -26,28 +26,28 @@ class Client(AbstractUser):
 
 
 class RoomType(models.Model):
-    name = models.CharField(max_length=50, blank=True)
+    name = models.CharField(max_length=50, blank=True, verbose_name="Название")
     def __str__(self):
         return self.name
 
 class Room(models.Model):
-    description = models.TextField(max_length=5000, blank=True)
-    photo = models.ImageField(blank=True, upload_to='images/')
-    price = models.DecimalField(blank=True, decimal_places=2, max_digits=12)
-    capacity = models.IntegerField(blank=True)
-    room_type = models.ForeignKey(RoomType, on_delete=models.CASCADE, blank=True)
-    free_date = models.DateField(blank=True, null=True)
+    description = models.TextField(max_length=5000, blank=True, verbose_name="Описание")
+    photo = models.ImageField(blank=True, upload_to='images/', verbose_name="Фото")
+    price = models.DecimalField(blank=True, decimal_places=2, max_digits=12, verbose_name="Цена")
+    capacity = models.IntegerField(blank=True, verbose_name="Вместимость")
+    room_type = models.ForeignKey(RoomType, on_delete=models.CASCADE, blank=True, verbose_name="Тип комнаты")
+    free_date = models.DateField(blank=True, null=True, verbose_name="Свободна с")
 
 
     def __str__(self):
         return "Room"+str(self.id)
 
 class Booking(models.Model):
-    client = models.ForeignKey(Client, on_delete=models.CASCADE, blank=True, related_name='booking')
-    room = models.ForeignKey(Room, on_delete=models.CASCADE, blank=True, related_name='booking')
-    entry_date = models.DateField(blank=True)
-    departure_date = models.DateField(null=True,blank=True)
-    price = models.DecimalField(blank=True, decimal_places=2, max_digits=12, editable=False, default=0)
+    client = models.ForeignKey(Client, on_delete=models.CASCADE, blank=True, related_name='booking', verbose_name="Клиент")
+    room = models.ForeignKey(Room, on_delete=models.CASCADE, blank=True, related_name='booking', verbose_name="Комната")
+    entry_date = models.DateField(blank=True, verbose_name="Дата въезда")
+    departure_date = models.DateField(null=True,blank=True, verbose_name="Дата выезда")
+    price = models.DecimalField(blank=True, decimal_places=2, max_digits=12, editable=False, default=0, verbose_name="Стоимость")
     def __str__(self):
         return "Booking"+str(self.id)
 

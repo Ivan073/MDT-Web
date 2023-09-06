@@ -9,3 +9,7 @@ urlpatterns = [
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+admin.site.site_header = "\"Отель сайт\""
+admin.site.site_title = "\"Отель сайт\""
+admin.site.index_title = "Админ-панель"
