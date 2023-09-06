@@ -60,7 +60,7 @@ class Booking(models.Model):
     departure_date = models.DateField(null=True,blank=True, verbose_name="Дата выезда")
     price = models.DecimalField(blank=True, decimal_places=2, max_digits=12, editable=False, default=0, verbose_name="Стоимость")
     def __str__(self):
-        return "Booking"+str(self.id)
+        return "Бронь "+str(self.id)
 
     class Meta:
         verbose_name_plural = 'Брони'
@@ -73,3 +73,13 @@ class Booking(models.Model):
                 self.room.free_date = self.departure_date + timedelta(days=1)
         logger.warning(self.room.free_date)
         self.room.save(update_fields=["free_date"])
+
+class Payment(models.Model):
+    data = models.TextField(max_length=5000, blank=True, verbose_name="Содержимое")
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
+
+    def __str__(self):
+        return "Платеж " + str(self.id)
+
+    class Meta:
+        verbose_name_plural = 'Платежи'

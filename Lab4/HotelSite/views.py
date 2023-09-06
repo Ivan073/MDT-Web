@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login,logout
-from .models import Client, ClientData, Room, RoomType, Booking
+from .models import Client, ClientData, Room, RoomType, Booking, Payment
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib import admin
@@ -172,6 +172,12 @@ def booking_view(request, id):
 
 @login_required
 def payment_view(request):
+    data = "Платеж проведен в "
+    data+=str(datetime.now())
+    data+=".\nСтоимость: "
+    data+=str(request.session['price'])
+    data+=".\nКлиент: "+request.user.__str__()
+    Payment.objects.create(data=data);
     return redirect("/payment_finished")
 
 @login_required
