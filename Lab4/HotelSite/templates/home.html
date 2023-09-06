@@ -16,7 +16,7 @@
         <div class="d-flex">
             <input style="max-width:250px" type="text" id="price_filter" name="price_filter" class="form-control me-sm-2" placeholder="Цена (BYN/день)">
             <div class="btn-group" role="group" aria-label="Price group">
-              <input type="radio" class="btn-check" name="price_radio" id="price_radio1" autocomplete="off" value="up">
+              <input type="radio" class="btn-check" name="price_radio" id="price_radio1" autocomplete="off" value="up"  checked>
               <label class="btn btn-outline-secondary" for="price_radio1">
                   <i class="bi bi-arrow-up"></i>
               </label>
@@ -77,3 +77,9 @@
   </a>
 </div>
 </body>
+
+<script>
+    if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+    }
+</script>

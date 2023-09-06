@@ -181,3 +181,8 @@ def payment_finsihed_view(request):
                            entry_date=datetime.date(datetime.strptime(request.session['start_date'],'%Y-%m-%d')),
                            departure_date=datetime.date(datetime.strptime(request.session['end_date'],'%Y-%m-%d')))
     return render(request, "payment_successful.html")
+
+@login_required
+def bookings_view(request):
+    bookings = Booking.objects.all().filter(client=request.user)
+    return render(request, "bookings.html", {"user":request.user, "bookings":bookings})

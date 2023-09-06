@@ -16,6 +16,11 @@
         <li class="nav-item">
           <a class="nav-link" href="/place">Ваше местоположение</a>
         </li>
+        {% if user.is_authenticated%}
+        <li class="nav-item">
+          <a class="nav-link" href="/bookings">Ваши брони</a>
+        </li>
+       {%endif%}
         {% if user.is_superuser%}
           <li class="nav-item">
             <a class="nav-link" href="/admin">Админ-панель</a>
