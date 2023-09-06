@@ -11,7 +11,7 @@
 <body>
 {% include "header.html" %}
     <div style="margin:40px;">
-      <div class="d-flex " style="gap: 10rem;margin-bottom:20px;">
+      <div class="d-flex" style="gap: 10rem;margin-bottom:20px">
           <div>
                 <img src = "{{room.photo.url}}" alt = "Изображение не загружено" class="img-thumbnail" style="width:25rem"></img>
           </div>
@@ -46,7 +46,13 @@
                       </div>
                   </li>
                   <li class="list-group-item d-flex justify-content-between align-items-center">
-                    Свободна с {{room.free_date|date:"d.m.Y"}}
+                    Свободна с
+                      {% if room.free_date > tomorrow %}
+                        {{room.free_date|date:"d.m.Y"}}
+                      {% else %}
+                        {{tomorrow|date:"d.m.Y"}}
+                      {% endif %}
+
                   </li>
               </ul>
           </div>
@@ -62,7 +68,7 @@
               {%endif%}
           </div>
       </div>
-    <h3>Описание:</h3>
+        <h3>Описание:</h3>
         <div class="lead" style="max-width:80rem;margin:10px;font-size:22px">{{room.description}}</div>
     </div>
 </body>

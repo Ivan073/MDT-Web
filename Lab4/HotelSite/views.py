@@ -138,7 +138,7 @@ def geo_view(request):
 def room_view(request, id):
     room = Room.objects.get(id=id)
     logger.warning(request.user)
-    return render(request, 'room.html', {'room': room, "user":request.user})
+    return render(request, 'room.html', {'room': room, "user":request.user,"tomorrow":datetime.today()+timedelta(days=1),})
 
 @login_required
 def booking_view(request, id):
