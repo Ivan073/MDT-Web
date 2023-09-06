@@ -180,6 +180,10 @@ def payment_finsihed_view(request):
                            room=Room.objects.get(id=request.session['room_id']),
                            entry_date=datetime.date(datetime.strptime(request.session['start_date'],'%Y-%m-%d')),
                            departure_date=datetime.date(datetime.strptime(request.session['end_date'],'%Y-%m-%d')))
+    request.session.pop('price', None)
+    request.session.pop('room_id', None)
+    request.session.pop('start_date', None)
+    request.session.pop('end_date', None)
     return render(request, "payment_successful.html")
 
 @login_required

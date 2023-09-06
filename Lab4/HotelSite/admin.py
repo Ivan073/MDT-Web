@@ -9,9 +9,22 @@ class BookingAdmin(admin.ModelAdmin):
 class RoomAdmin(admin.ModelAdmin):
     list_display = ('__str__',  'price', 'capacity','photo', 'free_date')
 
+class ClientAdmin(admin.ModelAdmin):
+    list_display = ('__str__',  'has_child')
 
-admin.site.register(Client)
+    def has_child(self, obj):
+        if obj.client_data.has_child:
+            return "Да"
+        else:
+            return "Нет"
+    has_child.short_description = 'Есть ребенок'
+
+
+admin.site.register(Client, ClientAdmin)
 admin.site.register(ClientData)
 admin.site.register(Room, RoomAdmin)
 admin.site.register(RoomType)
 admin.site.register(Booking, BookingAdmin)
+
+from django.contrib.auth.models import Group
+admin.site.unregister(Group)

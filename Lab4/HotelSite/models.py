@@ -11,6 +11,9 @@ class ClientData(models.Model):
     has_child = models.BooleanField(blank=True, verbose_name="Есть ребенок")
     def __str__(self):
         return "ClientData"+str(self.id)
+
+    class Meta:
+        verbose_name_plural = 'Данные клиентов'
 class Client(AbstractUser):
     username = None
     email = models.EmailField(unique=True, primary_key=True)
@@ -21,6 +24,9 @@ class Client(AbstractUser):
 
     objects = ClientManager()
 
+    class Meta:
+        verbose_name_plural = 'Клиенты'
+
     def __str__(self):
         return self.last_name + " " + self.first_name + " " + self.patronymic
 
@@ -30,6 +36,9 @@ class RoomType(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        verbose_name_plural = 'Типы комнат'
+
 class Room(models.Model):
     description = models.TextField(max_length=5000, blank=True, verbose_name="Описание")
     photo = models.ImageField(blank=True, upload_to='images/', verbose_name="Фото")
@@ -38,6 +47,8 @@ class Room(models.Model):
     room_type = models.ForeignKey(RoomType, on_delete=models.CASCADE, blank=True, verbose_name="Тип комнаты")
     free_date = models.DateField(blank=True, null=True, verbose_name="Свободна с")
 
+    class Meta:
+        verbose_name_plural = 'Комнаты'
 
     def __str__(self):
         return "Room"+str(self.id)
@@ -50,6 +61,9 @@ class Booking(models.Model):
     price = models.DecimalField(blank=True, decimal_places=2, max_digits=12, editable=False, default=0, verbose_name="Стоимость")
     def __str__(self):
         return "Booking"+str(self.id)
+
+    class Meta:
+        verbose_name_plural = 'Брони'
 
     def save(self, *args, **kwargs):
         self.price = self.room.price * (self.departure_date-self.entry_date+timedelta(days=1)).days
