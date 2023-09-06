@@ -11,6 +11,7 @@ from .forms import ClientAuthenticationForm, ClientCreationForm
 import requests
 from datetime import datetime, timedelta
 from django.contrib.auth.decorators import login_required
+from django.db.models import Sum
 
 logger = logging.getLogger(__name__)
 
@@ -196,3 +197,9 @@ def payment_finsihed_view(request):
 def bookings_view(request):
     bookings = Booking.objects.all().filter(client=request.user)
     return render(request, "bookings.html", {"user":request.user, "bookings":bookings})
+
+@login_required
+def statistics_view(request):
+    rooms = Booking.objects.values('room').annotate(total_price=Sum('price')).order_by('-total_price')
+    logger.warning(rooms)
+    return render(request, "statistics.html", {"user":request.user, "rooms_by_price":rooms})
