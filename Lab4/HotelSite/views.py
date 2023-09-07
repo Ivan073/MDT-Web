@@ -11,7 +11,7 @@ from .forms import ClientAuthenticationForm, ClientCreationForm
 import requests
 from datetime import datetime, timedelta
 from django.contrib.auth.decorators import login_required
-from django.db.models import Sum
+from django.db.models import Sum, Count
 
 logger = logging.getLogger(__name__)
 
@@ -201,5 +201,28 @@ def bookings_view(request):
 @login_required
 def statistics_view(request):
     rooms = Booking.objects.values('room').annotate(total_price=Sum('price')).order_by('-total_price')
-    logger.warning(rooms)
-    return render(request, "statistics.html", {"user":request.user, "rooms_by_price":rooms})
+    best_room = Room.objects.get(id=rooms[0]['room'])
+    logger.warning(best_room)
+    popular_room = Room.objects.get(
+        id=(Booking.objects.values('room').annotate(count=Count('id')).order_by('-count')[0])['room']
+    )
+    graph_data = list(map(lambda x: list(x.values()), list(rooms)))
+    graph_data = list(map(lambda x: ["Комната "+str(x[0]),float(x[1])],graph_data))
+
+    booking_amount = len(Booking.objects.all())
+    client_amount = len(Client.objects.all())
+    room_amount = len(Room.objects.all())
+    logger.warning(graph_data)
+    context = {
+        "user": request.user,
+        "rooms_by_price": rooms,
+        "best_room": best_room,
+        "popular_room": popular_room,
+        "graph_data":graph_data,
+        'values': graph_data,
+        'booking_amount':booking_amount,
+        'client_amount': client_amount,
+        'room_amount': room_amount,
+    }
+
+    return render(request, "statistics.html", context)
