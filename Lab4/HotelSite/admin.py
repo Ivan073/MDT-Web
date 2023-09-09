@@ -9,8 +9,27 @@ class BookingAdmin(admin.ModelAdmin):
 class RoomAdmin(admin.ModelAdmin):
     list_display = ('__str__',  'price', 'capacity','photo', 'free_date','room_type')
 
+
+class ChildFilter(admin.SimpleListFilter):
+    title = 'Есть ребенок'
+    parameter_name = 'has_child'
+
+    def lookups(self, request, model_admin):
+        return (
+            ('Да', 'Есть'),
+            ('Нет', 'Нет'),
+        )
+
+    def queryset(self, request, queryset):
+        if self.value() == 'Да':
+            return queryset.filter(client_data__has_child=True)
+        elif self.value() == 'Нет':
+            return queryset.filter(client_data__has_child=False)
+
+
 class ClientAdmin(admin.ModelAdmin):
     list_display = ('__str__',  'has_child')
+    list_filter = (ChildFilter,)
 
     def has_child(self, obj):
         if obj.client_data.has_child:
