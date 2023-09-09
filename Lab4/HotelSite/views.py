@@ -16,10 +16,11 @@ from django.db.models import Sum, Count
 logger = logging.getLogger(__name__)
 
 def login_view(request):
+    logger.info("Login page")
     context={"error":False}
     if request.method == "POST":
         form = ClientAuthenticationForm(request, request.POST)
-        logger.warning("test")
+
         if form.is_valid():
             user = form.get_user()
             if user is None:
@@ -31,7 +32,7 @@ def login_view(request):
     return render(request, "login.html", context)
 
 def signup_view(request):
-
+    logger.info("Signup page")
     context = {"error": False}
 
     if request.method == "POST":
@@ -49,12 +50,10 @@ def signup_view(request):
         if request.POST.get("has_child") is not None:
             context["has_child"] = request.POST["has_child"]
 
-        logger.warning(form.errors.as_data())
         unprocessed_errs = form.errors.as_data()
         errors = []
         if unprocessed_errs.get("email") is not None:
             for err in unprocessed_errs.get("email"):
-                logger.warning(err.code)
                 if err.code == 'unique':
                     errors.append("Пользователь с этим email уже зарегистрирован")
                 if err.code == 'invalid':
@@ -63,18 +62,17 @@ def signup_view(request):
 
         if unprocessed_errs.get("password2") is not None:
             for err in unprocessed_errs.get("password2"):
-                logger.warning(err.code)
                 if err.code == 'password_mismatch':
                     errors.append("Пароли не совпадают")
 
-        logger.warning(errors)
+        logger.warning("Signup errors:"+str(errors))
         context["errors"] = errors
     return render(request, "signup.html",context)
 
 def home_view(request):
+    logger.info("Home page")
     rooms = Room.objects.all()
     if request.method == "POST":
-        logger.warning(request.POST)
         type_name = request.POST.get("type")
         if type_name is not None and type_name != '':
             type_obj = RoomType.objects.get(name=type_name)
@@ -125,28 +123,29 @@ def logout_view(request):
     return redirect(request.META.get('HTTP_REFERER'))
 
 def geo_view(request):
+    logger.info("Place page")
     ip_response = requests.get('https://api.ipify.org/?format=json')
     ip = ip_response.json()['ip']
-    logger.info('IP:'+ip)
+    logger.info('User IP: '+ip+" User name: ")
     place_responce = requests.get('https://ipinfo.io/'+ip+'/geo')
     place = place_responce.json()
     context = {'ip':ip,
                'postal':place['postal'],
                'city':place['city']}
-    logger.info(context)
+
     return render(request, "place.html",context=context)
 
 def room_view(request, id):
+    logger.info("Room "+id+" page")
     room = Room.objects.get(id=id)
-    logger.warning(request.user)
     return render(request, 'room.html', {'room': room, "user":request.user,"tomorrow":datetime.today()+timedelta(days=1),})
 
 @login_required
 def booking_view(request, id):
+    logger.info("Booking room " + id + " page")
     room = Room.objects.get(id=id)
     min_date = max(room.free_date,datetime.date(datetime.today()+timedelta(days=1)))
     max_date = min_date + timedelta(days=30)
-    logger.warning(request.POST)
     context = {'room': room,
                "user":request.user,
                "min_date":min_date,
@@ -168,11 +167,11 @@ def booking_view(request, id):
                 return render(request, 'order.html', context)
             else:
                 context["error"] = True
-    logger.warning(context)
     return render(request, "booking.html",context)
 
 @login_required
 def payment_view(request):
+    logger.info("Payment for room " + str(request.session['room_id']) + " page. Client: "+request.user.__str__())
     data = "Платеж проведен в "
     data+=str(datetime.now())
     data+=".\nСтоимость: "
@@ -183,6 +182,7 @@ def payment_view(request):
 
 @login_required
 def payment_finsihed_view(request):
+    logger.info("Finished payment page")
     Booking.objects.create(client=request.user,
                            room=Room.objects.get(id=request.session['room_id']),
                            entry_date=datetime.date(datetime.strptime(request.session['start_date'],'%Y-%m-%d')),
@@ -195,16 +195,17 @@ def payment_finsihed_view(request):
 
 @login_required
 def bookings_view(request):
+    logger.info("Own booking page. Client: " + request.user.__str__())
     bookings = Booking.objects.all().filter(client=request.user)
     return render(request, "bookings.html", {"user":request.user, "bookings":bookings})
 
 @login_required
 def statistics_view(request):
+    logger.info("Statistics page")
     if not request.user.is_superuser:
         return redirect(home_view)
     rooms = Booking.objects.values('room').annotate(total_price=Sum('price')).order_by('-total_price')
     best_room = Room.objects.get(id=rooms[0]['room'])
-    logger.warning(best_room)
     popular_room = Room.objects.get(
         id=(Booking.objects.values('room').annotate(count=Count('id')).order_by('-count')[0])['room']
     )
