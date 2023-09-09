@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+{% load custom_tags %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script>
+        const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone; // e.g. "America/New_York"
+        document.cookie = "django_timezone=" + timezone;
+    </script>
+</head>
+<body>
+  <footer style="position:absolute;bottom:0">
+      <nav class="navbar navbar-expand-lg bg-light" data-bs-theme="light">
+          <p>Текущее время: {% current_time "%d/%m/%Y %H:%M" %}, Таймзона: {% user_timezone %}</p>
+     </nav>
+  </footer>
+</body>
+</html>

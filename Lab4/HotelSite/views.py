@@ -200,6 +200,8 @@ def bookings_view(request):
 
 @login_required
 def statistics_view(request):
+    if not request.user.is_superuser:
+        return redirect(home_view)
     rooms = Booking.objects.values('room').annotate(total_price=Sum('price')).order_by('-total_price')
     best_room = Room.objects.get(id=rooms[0]['room'])
     logger.warning(best_room)
