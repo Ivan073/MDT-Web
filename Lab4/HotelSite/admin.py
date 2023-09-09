@@ -7,7 +7,7 @@ class BookingAdmin(admin.ModelAdmin):
 
 
 class RoomAdmin(admin.ModelAdmin):
-    list_display = ('__str__',  'price', 'capacity','photo', 'free_date')
+    list_display = ('__str__',  'price', 'capacity','photo', 'free_date','room_type')
 
 class ClientAdmin(admin.ModelAdmin):
     list_display = ('__str__',  'has_child')
