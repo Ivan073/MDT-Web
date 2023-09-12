@@ -185,3 +185,111 @@ https://api.ipify.org:443 "GET /?format=json HTTP/1.1" 200 22
 User IP: 46.53.252.135 User name: 
 Starting new HTTPS connection (1): ipinfo.io:443
 https://ipinfo.io:443 "GET /46.53.252.135/geo HTTP/1.1" 200 None
+Watching for file changes with StatReloader
+Home page
+<QuerySet [<Room: Комната 1>, <Room: Комната 2>, <Room: Комната 3>, <Room: Комната 4>, <Room: Комната 5>, <Room: Комната 6>, <Room: Комната 7>]>
+Not Found: /media/images/room2_OMi0j1N.jpg
+Not Found: /favicon.ico
+Home page
+<QuerySet [<Room: Комната 1>, <Room: Комната 2>, <Room: Комната 3>, <Room: Комната 4>, <Room: Комната 5>, <Room: Комната 6>, <Room: Комната 7>]>
+Not Found: /media/images/room2_OMi0j1N.jpg
+Home page
+<QuerySet [<Room: Комната 1>, <Room: Комната 2>, <Room: Комната 3>, <Room: Комната 4>, <Room: Комната 5>, <Room: Комната 6>, <Room: Комната 7>]>
+Not Found: /media/images/room_nHVkgnL.jpg
+Not Found: /media/images/room2_a0ctDsW.jpg
+Not Found: /media/images/room_Y21Gqvr.jpg
+Not Found: /media/images/room2_OMi0j1N.jpg
+Home page
+<QuerySet [<Room: Комната 1>, <Room: Комната 2>, <Room: Комната 3>, <Room: Комната 4>, <Room: Комната 5>, <Room: Комната 6>, <Room: Комната 7>]>
+Not Found: /media/images/room2_a0ctDsW.jpg
+Not Found: /media/images/room_nHVkgnL.jpg
+Not Found: /media/images/room2_OMi0j1N.jpg
+Not Found: /media/images/room_Y21Gqvr.jpg
+Home page
+<QuerySet [<Room: Комната 1>, <Room: Комната 2>, <Room: Комната 3>, <Room: Комната 4>, <Room: Комната 5>, <Room: Комната 6>, <Room: Комната 7>]>
+Not Found: /media/images/room2_a0ctDsW.jpg
+Not Found: /media/images/room_nHVkgnL.jpg
+Not Found: /media/images/room2_OMi0j1N.jpg
+Not Found: /media/images/room_Y21Gqvr.jpg
+Home page
+<QuerySet [<Room: Комната 1>, <Room: Комната 2>, <Room: Комната 3>, <Room: Комната 4>, <Room: Комната 5>, <Room: Комната 6>, <Room: Комната 7>]>
+Not Found: /media/images/room2_a0ctDsW.jpg
+Not Found: /media/images/room_nHVkgnL.jpg
+Not Found: /media/images/room2_OMi0j1N.jpg
+Not Found: /media/images/room_Y21Gqvr.jpg
+Home page
+<QuerySet [<Room: Комната 1>, <Room: Комната 2>, <Room: Комната 3>, <Room: Комната 4>, <Room: Комната 5>, <Room: Комната 6>, <Room: Комната 7>]>
+Not Found: /media/images/room_nHVkgnL.jpg
+Not Found: /media/images/room2_a0ctDsW.jpg
+Not Found: /media/images/room2_OMi0j1N.jpg
+Not Found: /media/images/room_Y21Gqvr.jpg
+Home page
+<QuerySet [<Room: Комната 1>, <Room: Комната 2>, <Room: Комната 3>, <Room: Комната 4>, <Room: Комната 5>, <Room: Комната 6>, <Room: Комната 7>]>
+Not Found: /media/images/room_nHVkgnL.jpg
+Not Found: /media/images/room2_a0ctDsW.jpg
+Not Found: /media/images/room2_OMi0j1N.jpg
+Not Found: /media/images/room_Y21Gqvr.jpg
+Home page
+<QuerySet [<Room: Комната 1>, <Room: Комната 2>, <Room: Комната 3>, <Room: Комната 4>, <Room: Комната 5>, <Room: Комната 6>, <Room: Комната 7>]>
+Not Found: /media/images/room_nHVkgnL.jpg
+Not Found: /media/images/room2_a0ctDsW.jpg
+Not Found: /media/images/room2_OMi0j1N.jpg
+Not Found: /media/images/room_Y21Gqvr.jpg
+Home page
+<QuerySet [<Room: Комната 1>, <Room: Комната 2>, <Room: Комната 3>, <Room: Комната 4>, <Room: Комната 5>, <Room: Комната 6>, <Room: Комната 7>]>
+Not Found: /media/images/room_nHVkgnL.jpg
+Not Found: /media/images/room2_a0ctDsW.jpg
+Not Found: /media/images/room_Y21Gqvr.jpg
+Not Found: /media/images/room2_OMi0j1N.jpg
+Home page
+<QuerySet [<Room: Комната 1>, <Room: Комната 2>, <Room: Комната 3>, <Room: Комната 4>, <Room: Комната 5>, <Room: Комната 6>, <Room: Комната 7>]>
+Not Found: /media/images/room2_a0ctDsW.jpg
+Not Found: /media/images/room_nHVkgnL.jpg
+Not Found: /media/images/room_Y21Gqvr.jpg
+Not Found: /media/images/room2_OMi0j1N.jpg
+Home page
+<QuerySet [<Room: Комната 1>, <Room: Комната 2>, <Room: Комната 3>, <Room: Комната 4>, <Room: Комната 5>, <Room: Комната 6>, <Room: Комната 7>]>
+Not Found: /media/images/room_nHVkgnL.jpg
+Not Found: /media/images/room2_a0ctDsW.jpg
+Not Found: /media/images/room_Y21Gqvr.jpg
+Not Found: /media/images/room2_OMi0j1N.jpg
+Room 3 page
+Not Found: /media/images/room_nHVkgnL.jpg
+Room 2 page
+Home page
+<QuerySet [<Room: Комната 1>, <Room: Комната 2>, <Room: Комната 3>, <Room: Комната 4>, <Room: Комната 5>, <Room: Комната 6>, <Room: Комната 7>]>
+Not Found: /media/images/room_nHVkgnL.jpg
+Not Found: /media/images/room2_a0ctDsW.jpg
+Not Found: /media/images/room2_OMi0j1N.jpg
+Not Found: /media/images/room_Y21Gqvr.jpg
+Home page
+<QuerySet [<Room: Комната 1>, <Room: Комната 2>, <Room: Комната 3>, <Room: Комната 4>, <Room: Комната 5>, <Room: Комната 6>, <Room: Комната 7>]>
+Not Found: /media/images/room2_a0ctDsW.jpg
+Not Found: /media/images/room_nHVkgnL.jpg
+Not Found: /media/images/room2_OMi0j1N.jpg
+Not Found: /media/images/room_Y21Gqvr.jpg
+Home page
+<QuerySet [<Room: Комната 1>, <Room: Комната 2>, <Room: Комната 3>, <Room: Комната 4>, <Room: Комната 5>, <Room: Комната 6>, <Room: Комната 7>]>
+Not Found: /media/images/room2_a0ctDsW.jpg
+Not Found: /media/images/room_nHVkgnL.jpg
+Not Found: /media/images/room_Y21Gqvr.jpg
+Not Found: /media/images/room2_OMi0j1N.jpg
+Home page
+<QuerySet [<Room: Комната 1>, <Room: Комната 2>, <Room: Комната 3>, <Room: Комната 4>, <Room: Комната 5>, <Room: Комната 6>, <Room: Комната 7>]>
+Not Found: /media/images/room_nHVkgnL.jpg
+Not Found: /media/images/room2_a0ctDsW.jpg
+Not Found: /media/images/room_Y21Gqvr.jpg
+Not Found: /media/images/room2_OMi0j1N.jpg
+Home page
+<QuerySet [<Room: Комната 1>, <Room: Комната 2>, <Room: Комната 3>, <Room: Комната 4>, <Room: Комната 5>, <Room: Комната 6>, <Room: Комната 7>]>
+Home page
+<QuerySet [<Room: Комната 1>, <Room: Комната 2>, <Room: Комната 3>, <Room: Комната 4>, <Room: Комната 5>, <Room: Комната 6>, <Room: Комната 7>]>
+Watching for file changes with StatReloader
+Home page
+<QuerySet [<Room: Комната 1>, <Room: Комната 2>, <Room: Комната 3>, <Room: Комната 4>, <Room: Комната 5>, <Room: Комната 6>, <Room: Комната 7>]>
+Home page
+<QuerySet [<Room: Комната 1>, <Room: Комната 2>, <Room: Комната 3>, <Room: Комната 4>, <Room: Комната 5>, <Room: Комната 6>, <Room: Комната 7>]>
+Statistics page
+[['Комната 1', 2252.97], ['Комната 3', 415.0], ['Комната 2', 50.99]]
+Home page
+<QuerySet [<Room: Комната 1>, <Room: Комната 2>, <Room: Комната 3>, <Room: Комната 4>, <Room: Комната 5>, <Room: Комната 6>, <Room: Комната 7>]>
