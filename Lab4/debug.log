@@ -1,0 +1,35 @@
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Watching for file changes with StatReloader
+Home page
+<QuerySet []>
+Login page
+Login page
+Internal Server Error: /login
+Traceback (most recent call last):
+  File "C:\Users\vanya\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\vanya\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\Programming\BSUIR\MDTWeb\Lab4\HotelSite\views.py", line 25, in login_view
+    user = form.get_user()
+  File "D:\Programming\BSUIR\MDTWeb\Lab4\HotelSite\forms.py", line 13, in get_user
+    user = Client.objects.get(email=email)
+  File "C:\Users\vanya\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+  File "C:\Users\vanya\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.10_qbz5n2kfra8p0\LocalCache\local-packages\Python310\site-packages\django\db\models\query.py", line 637, in get
+    raise self.model.DoesNotExist(
+HotelSite.models.Client.DoesNotExist: Client matching query does not exist.
+Place page
+Starting new HTTPS connection (1): api.ipify.org:443
+https://api.ipify.org:443 "GET /?format=json HTTP/1.1" 200 22
+User IP: 46.53.252.135 User name: 
+Starting new HTTPS connection (1): ipinfo.io:443
+https://ipinfo.io:443 "GET /46.53.252.135/geo HTTP/1.1" 200 None
+Watching for file changes with StatReloader

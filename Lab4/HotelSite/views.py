@@ -136,13 +136,13 @@ def geo_view(request):
     return render(request, "place.html",context=context)
 
 def room_view(request, id):
-    logger.info("Room "+id+" page")
+    logger.info("Room "+str(id)+" page")
     room = Room.objects.get(id=id)
     return render(request, 'room.html', {'room': room, "user":request.user,"tomorrow":datetime.today()+timedelta(days=1),})
 
 @login_required
 def booking_view(request, id):
-    logger.info("Booking room " + id + " page")
+    logger.info("Booking room " + str(id) + " page")
     room = Room.objects.get(id=id)
     min_date = max(room.free_date,datetime.date(datetime.today()+timedelta(days=1)))
     max_date = min_date + timedelta(days=30)
