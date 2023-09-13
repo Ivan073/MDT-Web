@@ -1,11 +1,70 @@
 {% extends "base.html"%}
+{% load static%}
 {% block title %}"Отель сайт"{% endblock title %}
 {% block body %}
 {% include "header.html" %}
-<div class="card" style="margin:20px;max-width:100%">
-    <div class="card-header display-6">Информация о компании </div>
+<div style="margin:20px;max-width:100%">
+    <div style="margin:20px">
+    <h3>Видео нашего сайта:</h3>
+    <video  height="400px" controls muted autoplay loop>
+      <source src="media/about.mp4" type="video/mp4" >
+      Ваш браузер не поддерживает тег video.
+    </video>
+    </div>
+<div class="card" >
+    <div class="card-header display-6"><img src="{% static 'favicon.png' %}" alt="Лого сайта не загружено" style="width:5%">Информация о компании </div>
     <div class="card-body">
-        Наша компания самая лучшая. Мы гордимся собой и своим отелем. Наши комнаты самые лучшие
+    <pre style="white-space:pre-wrap">
+    Наша компания самая лучшая. Мы гордимся собой и своим отелем. Наши комнаты самые лучшие
+    История отеля:
+        1918 г. - Открытие отеля
+        1939 г. - В нашем отеле отеле побывал важный немецкий чиновник
+        1986 г. - В отеле взорвалась бомба
+        2000 г. - Реставрация здания
+        2023 г. - Получена награда за самую смешную историю отеля
+    </pre>
+    </div>
+</div>
+    <br>
+    <table class="table">
+        <tr class="table-secondary">
+            <td>Полное название организации</td>
+            <td>ОБЩЕСТВО С ОГРАНИЧЕННОЙ ОТВЕТСТВЕННОСТЬЮ "ОТЕЛЬ САЙТ"</td>
+        </tr>
+        <tr class="table-secondary">
+            <td>Английское название</td>
+            <td>OOO "HOTEL SITE"</td>
+        </tr>
+        <tr class="table-secondary">
+            <td>Адрес</td>
+            <td>ул. Простоквашино 4</td>
+        </tr>
+        <tr class="table-secondary">
+            <td>Уставный капитал</td>
+            <td>100500 BYN</td>
+        </tr>
+        <tr class="table-secondary">
+            <td>ОКФС</td>
+            <td>Частная собственность</td>
+        </tr>
+        <tr class="table-secondary">
+            <td>ОКОПФ</td>
+            <td>Общества с ограниченной ответственностью</td>
+        </tr>
+        <tr class="table-secondary">
+            <td>ОКОГУ</td>
+            <td>Организации, учрежденные юридическими лицами или гражданами, или юридическими лицами и гражданами совместно</td>
+        </tr>
+    </table>
+    <div class="card" >
+    <div class="card-header display-6">Сертификат</div>
+    <div class="card-body">
+    <pre style="white-space:pre-wrap">
+    Реальный сертификат подписанный во всех странах мира
+    Содержимое не подлежит изменению
+    Цифровая подпись: sdfls@lsdf_;)
+    Реальный сертификат
+    </pre>
     </div>
 </div>
 {% include "footer.html" %}
