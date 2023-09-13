@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login,logout
-from .models import Client, ClientData, Room, RoomType, Booking, Payment, Article, Vacancy, Promocode, Review
+from .models import Client, ClientData, Room, RoomType, Booking, Payment, Article, Vacancy, Promocode, Review, FAQ
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib import admin
@@ -252,3 +252,8 @@ def reviews_view(request):
     reviews = Review.objects.all()
     context = {"reviews":reviews}
     return render(request, "reviews.html", context)
+
+def faq_view(request):
+    questions = FAQ.objects.all()
+    context = {"questions":questions}
+    return render(request, "FAQ.html", context)

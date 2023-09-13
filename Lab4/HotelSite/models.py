@@ -87,6 +87,7 @@ class Payment(models.Model):
 
 class Article(models.Model):
     heading = data = models.TextField(max_length=200, blank=True, verbose_name="Заголовок")
+    short_data = models.TextField(max_length=1000, blank=True, verbose_name="Краткое содержимое")
     data = models.TextField(max_length=5000, blank=True, verbose_name="Содержимое")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
 
@@ -128,3 +129,14 @@ class Promocode(models.Model):
 
     class Meta:
         verbose_name_plural = 'Промокоды'
+
+class FAQ(models.Model):
+    question = models.CharField(max_length=500, blank=True, verbose_name="Вопрос")
+    answer = models.TextField(max_length=5000, blank=True, verbose_name="Ответ")
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
+
+    def __str__(self):
+        return "Вопрос " + str(self.id)
+
+    class Meta:
+        verbose_name_plural = 'Часто задаваемые вопросы'

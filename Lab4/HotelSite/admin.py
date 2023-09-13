@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Client, ClientData, Room, RoomType, Booking, Payment, Article, Vacancy, Review, Promocode
+from .models import Client, ClientData, Room, RoomType, Booking, Payment, Article, Vacancy, Review, Promocode,FAQ
 
 class BookingAdmin(admin.ModelAdmin):
     list_display = ('client', 'room', 'entry_date', 'departure_date', 'price')
@@ -60,6 +60,9 @@ class PromocodeAdmin(admin.ModelAdmin):
             return "Нет"
     is_archived.short_description = 'Заархивирован'
 
+class FAQAdmin(admin.ModelAdmin):
+    list_display = ('__str__', 'created_at')
+
 
 admin.site.register(Client, ClientAdmin)
 admin.site.register(ClientData)
@@ -71,6 +74,7 @@ admin.site.register(Article, ArticleAdmin)
 admin.site.register(Vacancy, VacancyAdmin)
 admin.site.register(Review, ReviewAdmin)
 admin.site.register(Promocode, PromocodeAdmin)
+admin.site.register(FAQ, FAQAdmin)
 
 from django.contrib.auth.models import Group
 admin.site.unregister(Group)

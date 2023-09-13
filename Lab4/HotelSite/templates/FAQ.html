@@ -1,0 +1,29 @@
+{% extends "base.html"%}
+{% block title %}"Отель сайт"{% endblock title %}
+
+{% block body %}
+{% include "header.html" %}
+
+<h2>Часто задаваемые вопросы</h2>
+{% if questions%}
+<div class="accordion" id="accordionExample">
+    {% for question in questions%}
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="heading{{question.id}}">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{question.id}}" aria-expanded="false" aria-controls="collapse{{question.id}}">
+        {{question.question}}
+      </button>
+    </h2>
+    <div id="collapse{{question.id}}" class="accordion-collapse collapse" aria-labelledby="heading{{question.id}}" data-bs-parent="#accordionExample" style="">
+      <div class="accordion-body">
+          <pre style="white-space:pre-wrap">{{question.answer}}</pre>
+      </div>
+    </div>
+  </div>
+{%endfor%}
+</div>
+{%else%}
+  Часто задаваемые вопросы отсутствуют
+{%endif%}
+{% include "footer.html" %}
+{% endblock %}
