@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Client, ClientData, Room, RoomType, Booking, Payment
+from .models import Client, ClientData, Room, RoomType, Booking, Payment, Article, Vacancy, Review
 
 class BookingAdmin(admin.ModelAdmin):
     list_display = ('client', 'room', 'entry_date', 'departure_date', 'price')
@@ -41,6 +41,15 @@ class ClientAdmin(admin.ModelAdmin):
 class PaymentAdmin(admin.ModelAdmin):
     list_display = ('__str__',  'created_at')
 
+class ArticleAdmin(admin.ModelAdmin):
+    list_display = ('__str__', 'heading',  'created_at')
+
+class VacancyAdmin(admin.ModelAdmin):
+    list_display = ('__str__',)
+
+class ReviewAdmin(admin.ModelAdmin):
+    list_display = ('client', 'rating', 'data')
+
 
 admin.site.register(Client, ClientAdmin)
 admin.site.register(ClientData)
@@ -48,6 +57,9 @@ admin.site.register(Room, RoomAdmin)
 admin.site.register(RoomType)
 admin.site.register(Booking, BookingAdmin)
 admin.site.register(Payment, PaymentAdmin)
+admin.site.register(Article, ArticleAdmin)
+admin.site.register(Vacancy, VacancyAdmin)
+admin.site.register(Review, ReviewAdmin)
 
 from django.contrib.auth.models import Group
 admin.site.unregister(Group)

@@ -86,11 +86,15 @@ class Payment(models.Model):
         verbose_name_plural = 'Платежи'
 
 class Article(models.Model):
+    heading = data = models.TextField(max_length=200, blank=True, verbose_name="Заголовок")
     data = models.TextField(max_length=5000, blank=True, verbose_name="Содержимое")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
 
     def __str__(self):
         return "Статья " + str(self.id)
+
+    class Meta:
+        verbose_name_plural = 'Статьи'
 
 class Vacancy(models.Model):
     name = models.CharField(max_length=100, blank=True, verbose_name="Название")
@@ -99,6 +103,9 @@ class Vacancy(models.Model):
     def __str__(self):
         return "Вакансия " + str(self.id)
 
+    class Meta:
+        verbose_name_plural = 'Вакансии'
+
 class Review(models.Model):
     client = models.ForeignKey(Client, on_delete=models.CASCADE, blank=True, related_name='review', verbose_name="Клиент")
     data = models.TextField(max_length=5000, blank=True, verbose_name="Содержимое")
@@ -106,3 +113,6 @@ class Review(models.Model):
 
     def __str__(self):
         return "Отзыв " + str(self.id)
+
+    class Meta:
+        verbose_name_plural = 'Отзывы'
