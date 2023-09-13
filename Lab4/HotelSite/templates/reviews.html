@@ -1,0 +1,40 @@
+{% extends "base.html"%}
+{% block title %}"Отель сайт"{% endblock title %}
+
+{% block body %}
+{% include "header.html" %}
+
+<h2>Отзывы</h2>
+{% if reviews%}
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Пользователь</th>
+      <th scope="col">Отзыв</th>
+      <th scope="col">Оценка</th>
+      <th scope="col">Дата</th>
+    </tr>
+  </thead>
+  <tbody>
+   {%for review in reviews%}
+    <tr>
+      <td>{{review.client}}</td>
+      <td>{{review.data}}</td>
+      <td>
+          {%if review.rating == 1%}★☆☆☆☆
+          {%elif review.rating == 2%}★★☆☆☆
+          {%elif review.rating == 3%}★★★☆☆
+          {%elif review.rating == 4%}★★★★☆
+          {%elif review.rating == 5%}★★★★★
+          {%endif%}
+      </td>
+      <td>{{review.created_at|date:"d-m-Y"}}</td>
+    </tr>
+    {%endfor%}
+  </tbody>
+    </table>
+{%else%}
+  Отзывы отсутствуют
+{%endif%}
+{% include "footer.html" %}
+{% endblock %}

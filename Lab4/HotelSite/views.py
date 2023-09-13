@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login,logout
-from .models import Client, ClientData, Room, RoomType, Booking, Payment, Article, Vacancy, Promocode
+from .models import Client, ClientData, Room, RoomType, Booking, Payment, Article, Vacancy, Promocode, Review
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib import admin
@@ -247,3 +247,8 @@ def promo_view(request):
     inactive_promocodes = promocodes.filter(is_archived=True)
     context = {"active_promocodes": active_promocodes, "inactive_promocodes": inactive_promocodes}
     return render(request, "promocodes.html", context)
+
+def reviews_view(request):
+    reviews = Review.objects.all()
+    context = {"reviews":reviews}
+    return render(request, "reviews.html", context)
