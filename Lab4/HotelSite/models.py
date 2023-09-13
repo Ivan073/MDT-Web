@@ -3,6 +3,7 @@ from django.contrib.auth.models import AbstractUser
 from .managers import ClientManager
 from datetime import datetime, timedelta
 import logging
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 logger = logging.getLogger(__name__)
 
@@ -83,3 +84,25 @@ class Payment(models.Model):
 
     class Meta:
         verbose_name_plural = 'Платежи'
+
+class Article(models.Model):
+    data = models.TextField(max_length=5000, blank=True, verbose_name="Содержимое")
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
+
+    def __str__(self):
+        return "Статья " + str(self.id)
+
+class Vacancy(models.Model):
+    name = models.CharField(max_length=100, blank=True, verbose_name="Название")
+    info = models.TextField(max_length=5000, blank=True, verbose_name="Информация")
+
+    def __str__(self):
+        return "Вакансия " + str(self.id)
+
+class Review(models.Model):
+    client = models.ForeignKey(Client, on_delete=models.CASCADE, blank=True, related_name='review', verbose_name="Клиент")
+    data = models.TextField(max_length=5000, blank=True, verbose_name="Содержимое")
+    rating = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)], verbose_name="Рейтинг")
+
+    def __str__(self):
+        return "Отзыв " + str(self.id)
