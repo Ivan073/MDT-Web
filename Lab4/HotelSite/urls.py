@@ -17,4 +17,5 @@ urlpatterns = [
     path('statistics', views.statistics_view),
     path('terms-of-service', views.terms_of_service_view),
     path('vacancies', views.vacancies_view),
+    path('promo', views.promo_view),
 ]

@@ -1,0 +1,52 @@
+{% extends "base.html"%}
+{% block title %}"Отель сайт"{% endblock title %}
+
+{% block body %}
+{% include "header.html" %}
+
+<h2>Активные промокоды</h2>
+<small>Промокоды предъявляются при заселении в отель</small>
+{% if active_promocodes%}
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Код</th>
+      <th scope="col">Информация о коде</th>
+    </tr>
+  </thead>
+  <tbody>
+   {%for promo in active_promocodes%}
+    <tr>
+      <td>{{promo.code}}</td>
+      <td>{{promo.info}}</td>
+    </tr>
+    {%endfor%}
+  </tbody>
+    </table>
+{%else%}
+  Промокоды отсутствуют
+{%endif%}
+<h2>Устаревшие промокоды</h2>
+{% if inactive_promocodes%}
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Код</th>
+      <th scope="col">Информация о коде</th>
+    </tr>
+  </thead>
+  <tbody>
+
+   {%for promo in inactive_promocodes%}
+    <tr>
+      <td>{{promo.code}}</td>
+      <td>{{promo.info}}</td>
+    </tr>
+    {%endfor%}
+  </tbody>
+    </table>
+{%else%}
+  Промокоды отсутствуют
+{%endif%}
+{% include "footer.html" %}
+{% endblock %}

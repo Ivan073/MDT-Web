@@ -110,9 +110,21 @@ class Review(models.Model):
     client = models.ForeignKey(Client, on_delete=models.CASCADE, blank=True, related_name='review', verbose_name="Клиент")
     data = models.TextField(max_length=5000, blank=True, verbose_name="Содержимое")
     rating = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)], verbose_name="Рейтинг")
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
 
     def __str__(self):
         return "Отзыв " + str(self.id)
 
     class Meta:
         verbose_name_plural = 'Отзывы'
+
+class Promocode(models.Model):
+    code = models.CharField(max_length=50, blank=True, verbose_name="Код")
+    info = models.TextField(max_length=1000, blank=True, verbose_name="Информация")
+    is_archived = models.BooleanField(blank=True, verbose_name="В архиве")
+
+    def __str__(self):
+        return "Промокод " + str(self.id)
+
+    class Meta:
+        verbose_name_plural = 'Промокоды'

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Client, ClientData, Room, RoomType, Booking, Payment, Article, Vacancy, Review
+from .models import Client, ClientData, Room, RoomType, Booking, Payment, Article, Vacancy, Review, Promocode
 
 class BookingAdmin(admin.ModelAdmin):
     list_display = ('client', 'room', 'entry_date', 'departure_date', 'price')
@@ -50,6 +50,16 @@ class VacancyAdmin(admin.ModelAdmin):
 class ReviewAdmin(admin.ModelAdmin):
     list_display = ('client', 'rating', 'data')
 
+class PromocodeAdmin(admin.ModelAdmin):
+    list_display = ('__str__', 'code', 'is_archived')
+
+    def is_archived(self, obj):
+        if obj.client_data.is_archived:
+            return "Да"
+        else:
+            return "Нет"
+    is_archived.short_description = 'Заархивирован'
+
 
 admin.site.register(Client, ClientAdmin)
 admin.site.register(ClientData)
@@ -60,6 +70,7 @@ admin.site.register(Payment, PaymentAdmin)
 admin.site.register(Article, ArticleAdmin)
 admin.site.register(Vacancy, VacancyAdmin)
 admin.site.register(Review, ReviewAdmin)
+admin.site.register(Promocode, PromocodeAdmin)
 
 from django.contrib.auth.models import Group
 admin.site.unregister(Group)
