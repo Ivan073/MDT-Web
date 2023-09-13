@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login,logout
-from .models import Client, ClientData, Room, RoomType, Booking, Payment
+from .models import Client, ClientData, Room, RoomType, Booking, Payment, Article, Vacancy
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib import admin
@@ -108,7 +108,6 @@ def home_view(request):
             rooms = rooms.filter(free_date__lte=date)
 
 
-    logger.warning(rooms)
     context={
         "user":request.user,
         "rooms":rooms,
@@ -116,7 +115,11 @@ def home_view(request):
         "tomorrow":datetime.today()+timedelta(days=1),
         "max": datetime.today() + timedelta(days=31)
     }
-    return render(request, "home.html",context=context)
+    try:
+        context['article'] = Article.objects.all().order_by('-created_at')[0].heading
+    except:
+        pass
+    return render(request, "home.html", context=context)
 
 def logout_view(request):
     logout(request)
@@ -229,3 +232,11 @@ def statistics_view(request):
     }
 
     return render(request, "statistics.html", context)
+
+def terms_of_service_view(request):
+    return render(request, "terms_of_service.html")
+
+def vacancies_view(request):
+    vacancies = Vacancy.objects.all()
+    context = {"vacancies":vacancies}
+    return render(request, "vacancies.html",context)

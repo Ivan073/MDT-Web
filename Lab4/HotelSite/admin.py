@@ -45,7 +45,7 @@ class ArticleAdmin(admin.ModelAdmin):
     list_display = ('__str__', 'heading',  'created_at')
 
 class VacancyAdmin(admin.ModelAdmin):
-    list_display = ('__str__',)
+    list_display = ('__str__', 'name')
 
 class ReviewAdmin(admin.ModelAdmin):
     list_display = ('client', 'rating', 'data')

@@ -15,4 +15,6 @@ urlpatterns = [
     path('payment_finished', views.payment_finsihed_view),
     path('bookings', views.bookings_view),
     path('statistics', views.statistics_view),
+    path('terms-of-service', views.terms_of_service_view),
+    path('vacancies', views.vacancies_view),
 ]

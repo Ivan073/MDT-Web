@@ -1,0 +1,23 @@
+{% extends "base.html"%}
+{% block title %}"Отель сайт"{% endblock title %}
+
+{% block body %}
+{% include "header.html" %}
+<h2>Доступные вакансии</h2>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Название</th>
+      <th scope="col">Информация о вакансии</th>
+    </tr>
+  </thead>
+  <tbody>
+   {%for vacancy in vacancies%}
+    <tr>
+      <td>{{vacancy.name}}</td>
+      <td>{{vacancy.info}}</td>
+    </tr>
+    {%endfor%}
+  </tbody>
+    </table>
+{% endblock %}

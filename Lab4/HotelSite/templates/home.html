@@ -3,6 +3,27 @@
 
 {% block body %}
 {% include "header.html" %}
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5109477261823287"
+     crossorigin="anonymous"></script>
+<!-- localhost banner -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-5109477261823287"
+     data-ad-slot="4214414549"
+     data-ad-format="auto"
+     data-adtest="on"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<h2 style="margin: 20px">Последняя статья:</h2>
+<div class="card" style="margin:20px;width:40%">
+{%if article%}
+ {{article}}
+{%else%}
+ Статей нет
+{%endif%}
+</div>
 <form method="post" action="{% url 'home' %}">{% csrf_token %}
 <div class="d-flex" style="gap:3rem; margin:20px; height:30px;">
         <span class="text-secondary">Фильтр:</span>
