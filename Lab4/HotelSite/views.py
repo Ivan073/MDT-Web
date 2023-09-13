@@ -3,7 +3,8 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login,logout
-from .models import Client, ClientData, Room, RoomType, Booking, Payment, Article, Vacancy, Promocode, Review, FAQ
+from .models import Client, ClientData, Room, RoomType, Booking, Payment, Article, Vacancy, Promocode, Review, FAQ, \
+    Employee
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib import admin
@@ -270,3 +271,8 @@ def article_view(request, id):
 
 def about_view(request):
     return render(request, "about.html")
+
+def contact_view(request):
+    context = {}
+    context['contacts'] = Employee.objects.all()
+    return render(request, "contacts.html", context)

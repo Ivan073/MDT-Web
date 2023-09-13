@@ -23,4 +23,5 @@ urlpatterns = [
     path('news', views.news_view),
     path('article/<int:id>/', views.article_view),
     path('about', views.about_view),
+    path('contacts', views.contact_view),
 ]

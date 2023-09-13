@@ -1,5 +1,9 @@
 from django.contrib import admin
-from .models import Client, ClientData, Room, RoomType, Booking, Payment, Article, Vacancy, Review, Promocode,FAQ
+from django.forms import TextInput, Textarea
+from django.db import models
+
+from .models import Client, ClientData, Room, RoomType, Booking, Payment,\
+    Article, Vacancy, Review, Promocode, FAQ, Employee
 
 class BookingAdmin(admin.ModelAdmin):
     list_display = ('client', 'room', 'entry_date', 'departure_date', 'price')
@@ -63,6 +67,9 @@ class PromocodeAdmin(admin.ModelAdmin):
 class FAQAdmin(admin.ModelAdmin):
     list_display = ('__str__', 'created_at')
 
+class EmployeeAdmin(admin.ModelAdmin):
+    list_display = ('__str__', 'email', 'phone_number')
+
 
 admin.site.register(Client, ClientAdmin)
 admin.site.register(ClientData)
@@ -75,6 +82,7 @@ admin.site.register(Vacancy, VacancyAdmin)
 admin.site.register(Review, ReviewAdmin)
 admin.site.register(Promocode, PromocodeAdmin)
 admin.site.register(FAQ, FAQAdmin)
+admin.site.register(Employee, EmployeeAdmin)
 
 from django.contrib.auth.models import Group
 admin.site.unregister(Group)
