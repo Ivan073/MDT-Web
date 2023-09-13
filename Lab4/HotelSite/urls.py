@@ -13,7 +13,7 @@ urlpatterns = [
     path('booking/<int:id>/', views.booking_view),
     path('payment', views.payment_view),
     path('payment_finished', views.payment_finsihed_view),
-    path('bookings', views.bookings_view),
+    path('account', views.account_view),
     path('statistics', views.statistics_view),
     path('terms-of-service', views.terms_of_service_view),
     path('vacancies', views.vacancies_view),

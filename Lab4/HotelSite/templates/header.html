@@ -13,6 +13,11 @@
     <a class="navbar-brand" href="{% url 'home' %}">"Отель сайт"</a>
     <div class="collapse navbar-collapse" id="navbarColor03">
       <ul class="navbar-nav me-auto">
+        {% if user.is_authenticated%}
+        <li class="nav-item">
+          <a class="nav-link" href="/account">Аккаунт</a>
+        </li>
+        {%endif%}
         <li class="nav-item">
           <a class="nav-link" href="/place">Ваше местоположение</a>
         </li>
@@ -22,11 +27,8 @@
         <li class="nav-item">
           <a class="nav-link" href="/reviews">Отзывы</a>
         </li>
-        {% if user.is_authenticated%}
-        <li class="nav-item">
-          <a class="nav-link" href="/bookings">Ваши брони</a>
-        </li>
-       {%endif%}
+
+
         {% if user.is_superuser%}
           <li class="nav-item">
             <a class="nav-link" href="/admin">Админ-панель</a>

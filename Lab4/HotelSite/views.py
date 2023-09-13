@@ -198,10 +198,10 @@ def payment_finsihed_view(request):
     return render(request, "payment_successful.html")
 
 @login_required
-def bookings_view(request):
+def account_view(request):
     logger.info("Own booking page. Client: " + request.user.__str__())
     bookings = Booking.objects.all().filter(client=request.user)
-    return render(request, "bookings.html", {"user":request.user, "bookings":bookings})
+    return render(request, "account.html", {"user":request.user, "bookings":bookings})
 
 @login_required
 def statistics_view(request):
