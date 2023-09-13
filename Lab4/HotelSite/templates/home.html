@@ -17,9 +17,10 @@
      (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
 <h2 style="margin: 20px">Последняя статья:</h2>
-<div class="card" style="margin:20px;width:40%">
+<div class="card" style="margin:20px;max-width:100%">
 {%if article%}
- {{article}}
+    <div class="card-header display-6">{{article.heading}}</div>
+    <div class="card-body">{{article.short_data}}</div>
 {%else%}
  Статей нет
 {%endif%}

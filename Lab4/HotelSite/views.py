@@ -116,7 +116,7 @@ def home_view(request):
         "max": datetime.today() + timedelta(days=31)
     }
     try:
-        context['article'] = Article.objects.all().order_by('-created_at')[0].heading
+        context['article'] = Article.objects.all().order_by('-created_at')[0]
     except:
         pass
     return render(request, "home.html", context=context)
@@ -257,3 +257,16 @@ def faq_view(request):
     questions = FAQ.objects.all()
     context = {"questions":questions}
     return render(request, "FAQ.html", context)
+
+def news_view(request):
+    context = {}
+    context['articles'] = Article.objects.all().order_by('-created_at')
+    return render(request, "news.html", context)
+
+def article_view(request, id):
+    context = {}
+    context['article'] = Article.objects.get(id=id)
+    return render(request, "article.html", context)
+
+def about_view(request):
+    return render(request, "about.html")
