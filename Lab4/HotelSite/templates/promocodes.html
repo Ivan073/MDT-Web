@@ -31,16 +31,16 @@
 <table class="table table-hover">
   <thead>
     <tr>
-      <th scope="col">Код</th>
-      <th scope="col">Информация о коде</th>
+      <th id="code2">Код</th>
+      <th id="info2">Информация о коде</th>
     </tr>
   </thead>
   <tbody>
 
    {%for promo in inactive_promocodes%}
     <tr>
-      <td>{{promo.code}}</td>
-      <td>{{promo.info}}</td>
+      <td headers="code2">{{promo.code}}</td>
+      <td headers="info2">{{promo.info}}</td>
     </tr>
     {%endfor%}
   </tbody>
