@@ -12,6 +12,7 @@
     <tr>
       <th id="user">Пользователь</th>
       <th id="review">Отзыв</th>
+      <th></th>
       <th id="rating">Оценка</th>
       <th id="date">Дата</th>
     </tr>
@@ -21,7 +22,8 @@
     <tr>
          <section itemscope itemtype="http://schema.org/Review">
               <td headers="client" itemprop="author">{{review.client}}</td>
-              <td headers="data" itemprop="comment">{{review.data}}</td>
+              <td headers="data" itemprop="comment" colspan="2">{{review.data}}</td>
+
               <td headers="rating" itemprop="reviewRating">
                   {%if review.rating == 1%}★☆☆☆☆
                   {%elif review.rating == 2%}★★☆☆☆
