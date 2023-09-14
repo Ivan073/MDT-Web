@@ -19,17 +19,19 @@
   <tbody>
    {%for review in reviews%}
     <tr>
-      <td headers="client">{{review.client}}</td>
-      <td headers="data">{{review.data}}</td>
-      <td headers="rating">
-          {%if review.rating == 1%}★☆☆☆☆
-          {%elif review.rating == 2%}★★☆☆☆
-          {%elif review.rating == 3%}★★★☆☆
-          {%elif review.rating == 4%}★★★★☆
-          {%elif review.rating == 5%}★★★★★
-          {%endif%}
-      </td>
-      <td headers="date">{{review.created_at|date:"d-m-Y"}}</td>
+         <section itemscope itemtype="http://schema.org/Review">
+              <td headers="client" itemprop="author">{{review.client}}</td>
+              <td headers="data" itemprop="comment">{{review.data}}</td>
+              <td headers="rating" itemprop="reviewRating">
+                  {%if review.rating == 1%}★☆☆☆☆
+                  {%elif review.rating == 2%}★★☆☆☆
+                  {%elif review.rating == 3%}★★★☆☆
+                  {%elif review.rating == 4%}★★★★☆
+                  {%elif review.rating == 5%}★★★★★
+                  {%endif%}
+              </td>
+              <td headers="date" itemprop="dateCreated">{{review.created_at|date:"d-m-Y"}}</td>
+         </section>
     </tr>
     {%endfor%}
   </tbody>

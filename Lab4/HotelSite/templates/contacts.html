@@ -15,12 +15,16 @@
   </thead>
   <tbody>
    {%for contact in contacts%}
+
     <tr>
-      <td>{{contact}}</td>
-      <td>{{contact.phone_number}}</td>
-      <td>{{contact.email}}</td>
-      <td>{{contact.job_desc}}</td>
+        <section itemscope itemtype="http://schema.org/Person">
+          <td itemprop="name">{{contact}}</td>
+          <td itemprop="telephone">{{contact.phone_number}}</td>
+          <td itemprop="email">{{contact.email}}</td>
+          <td itemprop="description">{{contact.job_desc}}</td>
+        </section>
     </tr>
+
     {%endfor%}
   </tbody>
     </table>
