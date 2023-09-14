@@ -52,7 +52,7 @@ class VacancyAdmin(admin.ModelAdmin):
     list_display = ('__str__', 'name')
 
 class ReviewAdmin(admin.ModelAdmin):
-    list_display = ('client', 'rating', 'data')
+    list_display = ('__str__','client', 'rating', 'data')
 
 class PromocodeAdmin(admin.ModelAdmin):
     list_display = ('__str__', 'code', 'is_archived')

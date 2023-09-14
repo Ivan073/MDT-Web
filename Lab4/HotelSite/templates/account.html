@@ -5,6 +5,7 @@
 {% include "header.html" %}
 <h1 style="margin: 20px">Ваши брони:</h1>
 
+{%if bookings%}
 <table class="table table-hover">
   <thead>
     <tr>
@@ -25,5 +26,61 @@
   {% endfor %}
   </tbody>
 </table>
+{%else%}
+<p>Брони отсутствуют</p>
+{%endif%}
+<h2>
+
+  {%if review%}
+  Изменить отзыв:
+  {%else%}
+  Оставить отзыв:
+  {%endif%}
+</h2>
+<div style="margin:20px">
+  <form method="post" action="account">
+    {% csrf_token %}
+    <textarea class="form-control" id="data" name="data" rows="5" style="width:40rem;resize:none">{{review.data}}</textarea>
+    <br>
+      <div class="btn-group" role="group" aria-label="Rating group">
+        <input type="radio" class="btn-check" name="rating_radio" id="rating_radio1" autocomplete="off" value="1">
+        <label class="btn btn-outline-secondary" for="rating_radio1">
+            1
+        </label>
+        <input type="radio" class="btn-check" name="rating_radio" id="rating_radio2" autocomplete="off" value="2">
+        <label class="btn btn-outline-secondary" for="rating_radio2">
+            2
+        </label>
+        <input type="radio" class="btn-check" name="rating_radio" id="rating_radio3" autocomplete="off" value="3">
+        <label class="btn btn-outline-secondary" for="rating_radio3">
+            3
+        </label>
+        <input type="radio" class="btn-check" name="rating_radio" id="rating_radio4" autocomplete="off" value="4">
+        <label class="btn btn-outline-secondary" for="rating_radio4">
+            4
+        </label>
+        <input type="radio" class="btn-check" name="rating_radio" id="rating_radio5" autocomplete="off" value="5">
+        <label class="btn btn-outline-secondary" for="rating_radio5">
+           5
+        </label>
+        <label class="btn btn-outline-dark disabled">
+           ★
+        </label>
+      </div>
+    <button class="btn btn-secondary" type="submit">Отправить</button>
+  </form>
+</div>
 {% include "footer.html" %}
+{%endblock%}
+
+{%block script%}
+  radio = document.getElementById("rating_radio{{review.rating}}");
+  console.log(radio)
+  if (radio != null){
+    radio.checked = true
+  }
+  else{
+    radio = document.getElementById("rating_radio5");
+    radio.checked = true
+  }
 {%endblock%}
