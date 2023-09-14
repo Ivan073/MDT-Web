@@ -37,10 +37,16 @@ def login_view(request):
 def signup_view(request):
     logger.info("Signup page")
     context = {"error": False}
+    age_error = False
 
     if request.method == "POST":
+        if request.POST.get("age") is None:
+            context = {"error": True}
+            age_error = True
+
+
         form = ClientCreationForm(request.POST)
-        if form.is_valid():
+        if form.is_valid() and not context['error']:
             user = form.save()
             login(request, user)
             return redirect(home_view)
@@ -69,6 +75,10 @@ def signup_view(request):
 
         logger.warning("Signup errors:" + str(errors))
         context["errors"] = errors
+
+    if age_error:
+        context["errors"].append("Вам должно быть 18")
+
     return render(request, "signup.html", context)
 
 
