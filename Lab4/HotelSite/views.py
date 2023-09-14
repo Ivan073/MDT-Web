@@ -85,10 +85,10 @@ def home_view(request):
         price_radio = request.POST.get("price_radio")
         if price_filter is not None and price_filter != '':
             if price_radio == 'up':
-                rooms = rooms.filter(price__gt=float(price_filter))
+                rooms = rooms.filter(price__gte=float(price_filter))
                 rooms = rooms.order_by('price')
             elif price_radio == 'down':
-                rooms = rooms.filter(price__lt=float(price_filter))
+                rooms = rooms.filter(price__lte=float(price_filter))
                 rooms = rooms.order_by('-price')
             elif price_radio is None:
                 rooms = rooms.filter(price=float(price_filter))
@@ -97,9 +97,9 @@ def home_view(request):
         capacity_radio = request.POST.get("capacity_radio")
         if capacity_filter is not None and capacity_filter != '':
             if capacity_radio == 'up':
-                rooms = rooms.filter(capacity__gt=float(capacity_filter))
+                rooms = rooms.filter(capacity__gte=float(capacity_filter))
             elif capacity_radio == 'down':
-                rooms = rooms.filter(capacity__lt=float(capacity_filter))
+                rooms = rooms.filter(capacity__lte=float(capacity_filter))
             elif capacity_radio is None:
                 rooms = rooms.filter(capacity=float(capacity_filter))
 
