@@ -18,7 +18,7 @@
   <tbody>
     {% for booking in bookings %}
     <tr>
-      <td headers="room"><a href="/rooms/{{booking.room.id}}"><img src="{{booking.room.photo.url}}"></a></td>
+      <td headers="room"><a href="/rooms/{{booking.room.id}}"><img src="{{booking.room.photo.url}}" style="width:19rem;height:15rem"></a></td>
       <td headers="entry">{{booking.entry_date|date:"d.m.Y"}}</td>
       <td headers="leave">{{booking.departure_date|date:"d.m.Y"}}</td>
       <td headers="price">{{booking.price}}BYN</td>
