@@ -84,7 +84,7 @@
   {% for room in rooms%}
   <a href = "rooms/{{room.id}}" style="text-decoration:none;color:black;">
   <div class="card">
-    <img src = "{{room.photo.url}}" alt = "Изображение не загружено"></img>
+    <img src = "{{room.photo.url}}" alt = "Изображение не загружено" style="width:19rem;height:15rem"></img>
       <ol class="breadcrumb">
         <li class="breadcrumb-item">{{room.price}}BYN</li>
         <li class="breadcrumb-item">{{room.capacity}} чел.</li>
