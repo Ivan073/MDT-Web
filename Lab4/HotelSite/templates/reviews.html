@@ -10,18 +10,18 @@
 <table class="table table-hover">
   <thead>
     <tr>
-      <th scope="col">Пользователь</th>
-      <th scope="col">Отзыв</th>
-      <th scope="col">Оценка</th>
-      <th scope="col">Дата</th>
+      <th id="user">Пользователь</th>
+      <th id="review">Отзыв</th>
+      <th id="rating">Оценка</th>
+      <th id="date">Дата</th>
     </tr>
   </thead>
   <tbody>
    {%for review in reviews%}
     <tr>
-      <td>{{review.client}}</td>
-      <td>{{review.data}}</td>
-      <td>
+      <td headers="client">{{review.client}}</td>
+      <td headers="data">{{review.data}}</td>
+      <td headers="rating">
           {%if review.rating == 1%}★☆☆☆☆
           {%elif review.rating == 2%}★★☆☆☆
           {%elif review.rating == 3%}★★★☆☆
@@ -29,7 +29,7 @@
           {%elif review.rating == 5%}★★★★★
           {%endif%}
       </td>
-      <td>{{review.created_at|date:"d-m-Y"}}</td>
+      <td headers="date">{{review.created_at|date:"d-m-Y"}}</td>
     </tr>
     {%endfor%}
   </tbody>

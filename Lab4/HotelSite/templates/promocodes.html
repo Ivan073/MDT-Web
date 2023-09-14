@@ -10,15 +10,15 @@
 <table class="table table-hover">
   <thead>
     <tr>
-      <th scope="col">Код</th>
-      <th scope="col">Информация о коде</th>
+      <th id="code">Код</th>
+      <th id="info">Информация о коде</th>
     </tr>
   </thead>
   <tbody>
    {%for promo in active_promocodes%}
     <tr>
-      <td>{{promo.code}}</td>
-      <td>{{promo.info}}</td>
+      <td headers="code">{{promo.code}}</td>
+      <td headers="info">{{promo.info}}</td>
     </tr>
     {%endfor%}
   </tbody>

@@ -70,15 +70,15 @@
     <table class="table table-hover">
   <thead>
     <tr>
-      <th scope="col">Комната</th>
-      <th scope="col">Суммарный доход</th>
+      <th id="room">Комната</th>
+      <th id="profit">Суммарный доход</th>
     </tr>
   </thead>
   <tbody>
    {%for room in rooms_by_price%}
     <tr>
-      <td><a href="/rooms/{{room.room}}">Комната {{room.room}}</a></td>
-      <td>{{room.total_price|floatformat:2}} BYN</td>
+      <td headers="room"><a href="/rooms/{{room.room}}">Комната {{room.room}}</a></td>
+      <td headers="profit">{{room.total_price|floatformat:2}} BYN</td>
     </tr>
     {%endfor%}
   </tbody>
