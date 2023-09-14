@@ -190,6 +190,12 @@ def payment_view(request):
     data += str(request.session['price'])
     data += ".\nКлиент: " + request.user.__str__()
     Payment.objects.create(data=data)
+    payment = Payment.objects.latest('id')
+
+    file = open("media/payment"+str(payment.id)+".txt", "w+")
+    request.session['payment_id'] = payment.id
+    file.write(data)
+    file.close()
     return redirect("/payment_finished")
 
 
@@ -204,7 +210,7 @@ def payment_finsihed_view(request):
     request.session.pop('room_id', None)
     request.session.pop('start_date', None)
     request.session.pop('end_date', None)
-    return render(request, "payment_successful.html")
+    return render(request, "payment_successful.html", {"payment_id": request.session['payment_id']})
 
 
 @login_required
