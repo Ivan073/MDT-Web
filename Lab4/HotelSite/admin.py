@@ -46,7 +46,7 @@ class PaymentAdmin(admin.ModelAdmin):
     list_display = ('__str__',  'created_at')
 
 class ArticleAdmin(admin.ModelAdmin):
-    list_display = ('__str__', 'heading',  'created_at')
+    list_display = ('__str__', 'heading', 'created_at', 'photo')
 
 class VacancyAdmin(admin.ModelAdmin):
     list_display = ('__str__', 'name')

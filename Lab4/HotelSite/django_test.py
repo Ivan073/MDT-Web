@@ -19,7 +19,12 @@ def test_payment_creation(payment):
 def test_payment_date_creation(payment):
     assert payment.created_at.day == datetime.datetime.today().day
 
-@pytest.mark.parametrize("url", ['','booking/1','bookings','place','login','signup'])
+@pytest.mark.parametrize("url", ['','booking/1','account','place','login','signup'])
 def test_pages(url):
     response = requests.get('http://127.0.0.1:8000/'+url)
     assert response.status_code == 200
+
+@pytest.mark.parametrize("url", ['signup','login'])
+def test_illegal_post(url):
+    response = requests.post('http://127.0.0.1:8000/'+url)
+    assert response.status_code == 403

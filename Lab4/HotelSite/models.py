@@ -103,6 +103,7 @@ class Article(models.Model):
     short_data = models.TextField(max_length=1000, blank=True, verbose_name="Краткое содержимое")
     data = models.TextField(max_length=5000, blank=True, verbose_name="Содержимое")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Дата создания")
+    photo = models.ImageField(blank=True, upload_to='images/', verbose_name="Фото")
 
     def __str__(self):
         return "Статья " + str(self.id)
